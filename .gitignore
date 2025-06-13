@@ -1,0 +1,6 @@
+*.map
+*.vscode
+*.json
+variables.css
+photographer.css
+modal.css
