@@ -1,3 +1,4 @@
+    //get photographer list
     async function getPhotographers() {
         // Ceci est un exemple de données pour avoir un affichage de photographes de test dès le démarrage du projet, 
         // mais il sera à remplacer avec une requête sur le fichier JSON en utilisant "fetch".
@@ -26,19 +27,23 @@
             photographers: [...photographers, ...photographers, ...photographers]})
     }
 
+//This function takes a list of photographers and dynamically creates HTML elements to display them.
     async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+        const photographersSection = document.querySelector(".photographer-section");
 
         photographers.forEach((photographer) => {
+            // Calls function `photographerTemplate(photographer)` to create a card
             const photographerModel = photographerTemplate(photographer);
+            //Appends the created card (`userCardDOM`) to the selected container
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
     }
 
     async function init() {
-        // Récupère les datas des photographes
+        // Fetches asynchronously the photographer data using `getPhotographers()`
         const { photographers } = await getPhotographers();
+        //Once loaded, `displayData()` creates and displays the cards
         displayData(photographers);
     }
     

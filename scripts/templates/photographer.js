@@ -1,8 +1,11 @@
 function photographerTemplate(data) {
+    //extract photographer data properties
     const { name, portrait } = data;
 
+    //construct a full URL access to the portrait image
     const picture = `assets/photographers/${portrait}`;
 
+    //dynamically creates en article element containing an image and a heading for the photographer.
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
