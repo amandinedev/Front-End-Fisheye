@@ -3,6 +3,8 @@
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    padding: 0;
+    font-style: normal;
 }
 
 
@@ -31,22 +33,64 @@ h1 {
     margin-top: 100px;
 }
 
-.photographer-section article {
+.photographer-section article a {
     justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-}
-
-.photographer-section article h2 {
+    text-decoration: none;
+    h2 {
     color: $lightbrown;
     font-size: 36px;
-}
-
-.photographer-section article img {
+    font-weight: 400;
+    margin-top: 16px;
+    margin-bottom: 5px;
+    }
+    .article__img--rounded {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(black, 0.25);
+    overflow: clip;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    }
+    .article__img {
+    height: 358px; 
+    position: absolute;
+    top: -50px;
+    object-fit: contain;
+        &--square {
+        height: 200px;
+        position: absolute;
+        top: 0px;
+        object-fit: contain;
+        }
+}
+}
+
+.article__info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    &--location{
+        font-size: 15px;//was 13px, increased for accessibility
+        color: $darkbrown;
+        margin: 0;
+    }
+    &--tagline {
+        font-size: 12px;//was 10px, increased for accessibility
+        color: black;
+        margin: 0;
+ }
+    &--price{
+        font-size: 11px;//was 9px, increased for accessibility
+        color: $grey;
+        margin: 0;
+    }
 }
 
 /****** page photographer ***********/

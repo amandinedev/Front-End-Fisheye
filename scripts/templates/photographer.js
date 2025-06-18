@@ -8,31 +8,50 @@ function photographerTemplate(data) {
     //dynamically creates en article element containing an image and a heading for the photographer.
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        const lienPhotographer = document.createElement( 'a' );
+        lienPhotographer.setAttribute("href", `photographer.html?id=${id}`);
+        lienPhotographer.setAttribute("role", "link");
+        lienPhotographer.setAttribute("aria-label", "aller vers la page de " + name);
+        const articleImg = document.createElement( 'div' );
+        articleImg.className="article__img--rounded";
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
-        img.setAttribute("alt", "${name}")
-        img.className = "Article__portrait";
+        img.setAttribute("alt", "")
+        img.className="article__img";
+         // If the image is square, add a class to it.
+        img.onload = function() {
+        const width = img.width;
+        const height = img.height;
+        console.log('Image ' + name + ' width:', img.width);
+        console.log('Image ' + name + ' height:', img.height);
+        if (width === height) {
+            img.className = "article__img--square";
+        }
+       };
         const h2 = document.createElement( 'h2' );
-        h2.className = "Article__title";
+        h2.className = "article__title";
         h2.textContent = name;
         // Create info container with additional details about the photographer.
         articleInfo = document.createElement( 'div' );
-        articleInfo.className = "Article__info";
+        articleInfo.className = "article__info";
+        articleInfo.setAttribute("aria-label", "information de la ou du photographe");
         // Location and country
         const pLocation = document.createElement( 'p' );
-        pLocation.className = "Article__info--location";
+        pLocation.className = "article__info--location";
         pLocation.textContent = city+ ", " + country;
         // Tagline
         const pTagline = document.createElement('p');
-        pTagline.className = "Article__info--tagline";
+        pTagline.className = "article__info--tagline";
         pTagline.textContent = tagline;
         // Price
         const pPrice = document.createElement( 'p' );
-        pPrice.className = "Article__info--price";
+        pPrice.className = "article__info--price";
         pPrice.textContent = price + "€/jour";    
         // Append all elements
-        article.appendChild(img);
-        article.appendChild(h2);
+        article.appendChild(lienPhotographer)
+        lienPhotographer.appendChild(articleImg);
+        articleImg.appendChild(img);
+        lienPhotographer.appendChild(h2);
         article.appendChild(articleInfo);
         articleInfo.appendChild(pLocation);
         articleInfo.appendChild(pTagline);
