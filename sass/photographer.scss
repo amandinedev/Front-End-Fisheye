@@ -1,24 +1,85 @@
-@import  "./variables.scss";
+@import "./variables.scss";
 
-#contact-modal {
-    display: none;
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
 }
 
-.photograph-header {
-    background-color: $main-bg-color;
-    height: 300px;
-    margin: 0 100px;
+#contact-modal {
+  display: none;
+}
+
+.header-photographer {
+  background-color: $main-bg-color;
+  height: 313px;
+  margin: 0 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+    &__section-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        //   align-items: center;
+        &--title {
+            color: $lightbrown;
+            font-size: 4em; //64px
+            font-weight: 400;
+            margin-top: -15%;
+            margin-bottom: -5%;
+        }
+        &--location {
+            font-size: 1.5em; //was 24px
+            color: $darkbrown;
+            margin: 0;
+        }
+        &--tagline {
+            font-size: 1.125em; //was 18px
+            color: black;
+            margin: 0;
+       }
+    }
 }
 
 .contact-button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: $darkbrown;
-    border-radius: 5px;
-    cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: $darkbrown;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.article__img--rounded {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background: transparent;
+  overflow: clip;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-sizing: content-box;
+}
+
+.article__img {
+  height: 358px;
+  position: absolute;
+  top: -50px;
+  object-fit: contain;
+  &--square {
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    object-fit: contain;
+  }
 }
