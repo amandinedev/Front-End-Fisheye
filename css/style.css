@@ -1,3 +1,24 @@
+/*.......Accessibility......*/
+/* Hide elements visually but keep them accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+:focus {
+  outline: 5px solid rgba(82, 214, 244, 0.5);
+  outline-offset: 4px;
+  border-radius: 15px;
+  background-color: #FAFAFA;
+}
+
+/*.......general......*/
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -23,6 +44,7 @@ h1 {
   margin-left: 100px;
 }
 
+/*.......Photographer section......*/
 .photographer-section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -40,7 +62,7 @@ h1 {
 }
 .photographer-section article a h2 {
   color: #D3573C;
-  font-size: 36px;
+  font-size: 2.25em;
   font-weight: 400;
   margin-top: 16px;
   margin-bottom: 5px;
@@ -50,10 +72,12 @@ h1 {
   width: 200px;
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background: transparent;
   overflow: clip;
   display: flex;
   justify-content: center;
   position: relative;
+  box-sizing: content-box;
 }
 .photographer-section article a .article__img {
   height: 358px;
@@ -77,30 +101,64 @@ h1 {
   gap: 5px;
 }
 .article__info--location {
-  font-size: 15px;
+  font-size: 1.06em;
   color: #901C1C;
   margin: 0;
 }
 .article__info--tagline {
-  font-size: 12px;
+  font-size: 0.75em;
   color: black;
   margin: 0;
 }
 .article__info--price {
-  font-size: 11px;
+  font-size: 0.69em;
   color: #757575;
   margin: 0;
 }
 
 /****** page photographer ***********/
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+}
+
 #contact-modal {
   display: none;
 }
 
-.photograph-header {
+.header-photographer {
   background-color: #FAFAFA;
-  height: 300px;
+  height: 313px;
   margin: 0 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+.header-photographer__section-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.header-photographer__section-info--title {
+  color: #D3573C;
+  font-size: 4em;
+  font-weight: 400;
+  margin-top: -15%;
+  margin-bottom: -5%;
+}
+.header-photographer__section-info--location {
+  font-size: 1.5em;
+  color: #901C1C;
+  margin: 0;
+}
+.header-photographer__section-info--tagline {
+  font-size: 1.125em;
+  color: black;
+  margin: 0;
 }
 
 .contact-button {
@@ -114,6 +172,34 @@ h1 {
   background-color: #901C1C;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.article__img--rounded {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background: transparent;
+  overflow: clip;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  box-sizing: content-box;
+}
+
+.article__img {
+  height: 358px;
+  position: absolute;
+  top: -50px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.article__img--square {
+  height: 200px;
+  position: absolute;
+  top: 0px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 /****** modal ***********/
