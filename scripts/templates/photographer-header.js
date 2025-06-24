@@ -10,11 +10,10 @@ const handleImageLoad = function (event, name) {
   }
 };
 
-function photographerPageTemplate(photographerData) {
+function headerTemplate(info) {
   //extract photographer data properties
-  const { name, id, city, country, tagline, price, portrait } =
-    photographerData;
-  console.log(photographerData);
+  const { name, id, city, country, tagline, price, portrait } = info;
+  console.log(info);
   //construct a full URL access to the portrait image
   const picture = `assets/photographers/${portrait}`;
   console.log("Constructed image path:", picture); // Debugging log

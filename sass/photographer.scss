@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-style: normal;
+  height: auto;
 }
 
 #contact-modal {
@@ -23,13 +24,14 @@ body {
     &__section-info {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        gap: 1.2em;
+        width: auto;
         //   align-items: center;
         &--title {
             color: $lightbrown;
             font-size: 4em; //64px
             font-weight: 400;
-            margin-top: -15%;
+            margin-top: -10%;
             margin-bottom: -5%;
         }
         &--location {
@@ -56,8 +58,10 @@ body {
   background-color: $darkbrown;
   border-radius: 5px;
   cursor: pointer;
+  // margin: 50px;
 }
 
+//photographer portrait
 .article__img--rounded {
   height: 200px;
   width: 200px;
@@ -70,7 +74,6 @@ body {
   position: relative;
   box-sizing: content-box;
 }
-
 .article__img {
   height: 358px;
   position: absolute;
@@ -81,5 +84,56 @@ body {
     position: absolute;
     top: 0px;
     object-fit: contain;
+  }
+}
+
+//media
+#main {
+  margin: 0 100px;
+}
+.section-medias {
+  // display: grid;
+  // grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  padding-top: 1rem;
+}
+.article-media {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 350px;
+  height: 351px;
+  border-radius: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  &__img,&__vid{
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+  }
+  &__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 5px 0;
+    &--title {
+    font-size: 1.5rem;//24px
+    font-weight: 400;
+    color: $lightbrown;
+    }
+    &--likes {
+      display: flex;
+      gap: 1em;
+      &-h3 {
+      font-size: 1.5rem; //24px
+      font-weight: 500;
+      color: $lightbrown;
+      }
+    }
   }
 }
