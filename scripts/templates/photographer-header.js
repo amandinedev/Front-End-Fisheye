@@ -25,7 +25,7 @@ function headerTemplate(info) {
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", "");
+    img.setAttribute("alt", `portrait de ${name}`);
     img.className = "article__img";
 
     // If the image is square, add a class to it.

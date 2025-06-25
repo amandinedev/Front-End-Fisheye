@@ -1,6 +1,4 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
-
 // get photographer data (info and media)
 async function getPhotographer() {
   // get photographers data
@@ -12,12 +10,14 @@ async function getPhotographer() {
   const id = parseInt(urlParams.get("id"));
   console.log("photographe id:", id);
   // get photographer data
-  const photographer = photographersData.photographers.filter((photographer) => photographer.id === id);
+  const photographer = photographersData.photographers.filter(
+    (photographer) => photographer.id === id
+  );
   const info = photographer[0];
-  const media = photographersData.media.filter((media) => media.photographerId === id).reverse();
-  // const photographerData = {photographer:photographerInfo, media: photographerMedia}
-  // console.log("Les données du photographe", photographerData)
-  return {info, media};
+  const media = photographersData.media
+    .filter((media) => media.photographerId === id)
+    .reverse();
+  return { info, media };
 }
 
 // Function to display data using the factory pattern
@@ -28,21 +28,36 @@ async function displayData(info, media) {
   const photographerPage = headerTemplate(info);
   const headerArticleDOM = photographerPage.getUserHeaderArticleDOM();
   const headerImageDOM = photographerPage.getUserHeaderImageDOM();
-  photographerHeader.insertBefore(headerArticleDOM, photographerHeader.firstChild);
+  photographerHeader.insertBefore(
+    headerArticleDOM,
+    photographerHeader.firstChild
+  );
   photographerHeader.appendChild(headerImageDOM);
 
-  // Show media
+  //show filter
+  const sectionFilter = filterTemplate(media);
+  const filterDOM = sectionFilter.getUserFilterDOM();
   const main = document.getElementById("main");
+  main.appendChild(filterDOM);
+
+  // Show media
   const sectionMedia = document.createElement("section");
   sectionMedia.classList.add("section-medias");
   console.log("Initial media array:", media);
   media.forEach((mediaItem) => {
     const mediaElement = MediaFactory.createMedia(info, mediaItem);
-    console.log("this is",mediaItem);
+    console.log("this is", mediaItem);
     const articleMediaDOM = mediaElement.getUserMediaDOM();
     sectionMedia.appendChild(articleMediaDOM);
   });
   main.appendChild(sectionMedia);
+
+  //show price
+  const sectionPrice = priceTemplate(info, media);
+  const priceDOM = sectionPrice.getUserPriceDOM();
+  main.appendChild(priceDOM);
+
+  // show modal
 }
 
 // Initialize the application
