@@ -1,0 +1,50 @@
+function modalTemplate(info) {
+  const {name} = info;
+
+  // create DOM elements for filter section
+  function getUserModalDOM() {
+    const modalSection = document.createElement("div");
+    modalSection.className= "modal";
+    modalSection.innerHTML = `
+    <section>
+     <h2>Contactez-moi</h2>
+     <h3>${name}</h3>
+     <img src="assets/icons/close.svg" onclick="closeModal()" />
+    <form >
+      <div class="formData">
+        <label for="first">Prénom</label>
+        <input 
+          class="text-control"
+          type="text"
+          id="first"
+          name="first"
+          minlength="2"
+        />
+      </div>
+      <div class="formData">
+        <label for="last">Nom</label>
+        <input 
+          class="text-control"
+          type="text"
+          id="last"
+          name="last"
+          minlength="2"
+        />
+      </div>
+      <div class="formData">
+        <label for="email">E-mail</label>
+        <input
+          class="text-control"
+          type="email"
+          id="email"
+          name="email"
+        />
+      </div>
+        <button class="contact-button">Envoyer</button>
+    </form>
+    </section>
+    `;
+    return modalSection;
+  }
+  return { getUserModalDOM };
+}
