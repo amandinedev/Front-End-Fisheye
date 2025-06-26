@@ -41,38 +41,16 @@ function headerTemplate(info) {
     // Append all elements
     articleImg.appendChild(img);
     return articleImg;
-    //   const headerString = `
-    //   <h2 class="article__title">${name}</h2>
-    //   <div class="article__img--rounded">
-    //     <img src="${picture}" alt="" class="article__img">
-    //   </div>
-    //   `;
-    //   // Create a temporary container to hold the string as HTML
-    //   const tempContainer = document.createElement("div");
-    //   tempContainer.innerHTML = headerString;
-    //   return tempContainer.firstChild;
-    // }
   }
 
   function getUserHeaderArticleDOM() {
     const section = document.createElement("section");
     section.className = "header-photographer__section-info";
-    const h2 = document.createElement("h2");
-    h2.className = "header-photographer__section-info--title";
-    h2.textContent = name;
-    // Location and country
-    const pLocation = document.createElement("p");
-    pLocation.className = "header-photographer__section-info--location";
-    pLocation.textContent = city + ", " + country;
-    // Tagline
-    const pTagline = document.createElement("p");
-    pTagline.className = "header-photographer__section-info--tagline";
-    pTagline.textContent = tagline;
-
-    
-    section.appendChild(h2);
-    section.appendChild(pLocation);
-    section.appendChild(pTagline);
+    section.innerHTML = `
+      <h1 class="header-photographer__section-info--title">${name}</h1>
+      <h2 class="header-photographer__section-info--location">${city}, ${country}</h2>
+      <p class="header-photographer__section-info--tagline">${tagline}</p>
+      `;
     return section;
   }
   return { name, id, city, country, tagline, price, picture, getUserHeaderArticleDOM, getUserHeaderImageDOM };

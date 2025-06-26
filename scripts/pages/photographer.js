@@ -28,10 +28,7 @@ async function displayData(info, media) {
   const photographerPage = headerTemplate(info);
   const headerArticleDOM = photographerPage.getUserHeaderArticleDOM();
   const headerImageDOM = photographerPage.getUserHeaderImageDOM();
-  photographerHeader.insertBefore(
-    headerArticleDOM,
-    photographerHeader.firstChild
-  );
+  photographerHeader.insertBefore(headerArticleDOM,photographerHeader.firstChild);
   photographerHeader.appendChild(headerImageDOM);
 
   //show filter

@@ -11,10 +11,10 @@ function priceTemplate(info, media){
     priceSection.className = "price-section";
     priceSection.innerHTML = `
     <div class="price-section__content--likes">
-      <p class="price-section__content--likes-total">${totalLikes}</p>
+      <h2 class="price-section__content--likes-total">${totalLikes}</h2>
       <img class="price-section__content--likes-icon" src="./assets/icons/like-black.svg" alt="">
     </div>
-    <p class="price-section__content--price">${price}€/jour</p>
+    <h3 class="price-section__content--price">${price}€/jour</h3>
     `;
   return priceSection;
   }

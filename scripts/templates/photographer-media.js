@@ -57,7 +57,7 @@ class ImageMedia extends MediaTemplate {
     articleImg.href = ``;
     articleImg.className = "article-media";
     articleImg.innerHTML = `
-    <img src="${picture}" alt="${this._title}" class="article-media__img">`;
+    <img src="${picture}" alt="" class="article-media__img">`;
 
     // create media content
     const imgContent = this.createMediaContent();
@@ -76,7 +76,8 @@ class VideoMedia extends MediaTemplate {
     articleVideo.href = ``;
     articleVideo.className = "article-media";
     articleVideo.innerHTML = `
-    <video src="${videoSrc}" alt="${this._title}" controls="true" class="article-media__vid">`;
+    <video src="${videoSrc}" controls="true" class="article-media__vid" aria-labelledby="video-description">
+    <div id="video-description" class="sr-only">${this.title}</div>`;
 
     // create media content
     const vidContent = this.createMediaContent();

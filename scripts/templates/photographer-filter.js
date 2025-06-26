@@ -3,11 +3,11 @@ function filterTemplate(media){
   const { likes, date, title } = media;
 // create DOM elements for filter section
   function getUserFilterDOM(likes, date, title){
-    const filterSection = document.createElement("section");
+    const filterSection = document.createElement("div");
     filterSection.className = "filter-section";
     filterSection.innerHTML = `
     <label for="filter" class="filter-label">Trier par</label>
-    <select class="filter-select" name="filter" id="filter" type="button">
+    <select class="filter-select" name="filter" id="filter">
       <div class="filter-select__option-container">
       <option class="filter-select__option" value="${likes}">Popularité</option>
       </div>

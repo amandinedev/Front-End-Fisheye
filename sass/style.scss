@@ -1,4 +1,9 @@
 @import "./variables.scss";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 /*.......Accessibility......*/
 
@@ -42,7 +47,9 @@ header {
   height: 90px;
 }
 
-h1 {
+.header-title {
+  font-size: 2.25em;
+  font-weight: 400;
   color: $darkbrown;
   margin-right: 100px;
 }

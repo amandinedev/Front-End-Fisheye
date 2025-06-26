@@ -2,8 +2,6 @@
 
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0;
-  padding: 0;
   font-style: normal;
   height: auto;
 }
@@ -14,6 +12,7 @@ body {
 
 #contact-modal {
   display: none;
+  background-color: $modal-bg-color;;
 }
 
 .header-photographer {
@@ -28,30 +27,24 @@ body {
         display: flex;
         flex-direction: column;
         gap: 1.2em;
-        width: auto;
-        //   align-items: center;
         &--title {
             color: $lightbrown;
             font-size: 4em; //64px
             font-weight: 400;
-            margin-top: -10%;
-            margin-bottom: -5%;
         }
         &--location {
             font-size: 1.5em; //was 24px
             color: $darkbrown;
-            margin: 0;
         }
         &--tagline {
             font-size: 1.125em; //was 18px
             color: black;
-            margin: 0;
        }
     }
 }
 
 .contact-button {
-  font-size: 20px;
+  font-size: 1.25em;//20px
   font-weight: bold;
   color: white;
   padding: 11px;
@@ -61,7 +54,6 @@ body {
   background-color: $darkbrown;
   border-radius: 5px;
   cursor: pointer;
-  // margin: 50px;
 }
 
 //photographer portrait
@@ -156,9 +148,9 @@ margin-left: 1em;
     &--title {
     padding: 0;
     margin: 0;
-    font-size: 1.3em;//24px
-    font-weight: 400;
-    color: $lightbrown;
+    font-size: 1.4em;//24px
+    font-weight: 400;//was 400 adjusted for contrast purpose
+    color: $darkbrown; //changed from $lightbrown for contrast purpose
     }
     &--likes {
       display: flex;
@@ -166,7 +158,7 @@ margin-left: 1em;
       &-h3 {
       font-size: 1.5rem; //24px
       font-weight: 500;
-      color: $lightbrown;
+      color:  $darkbrown; //changed from $lightbrown for contrast purpose
       }
     }
   }
@@ -185,7 +177,7 @@ margin-left: 1em;
   border-radius: 5px 5px 0 0;
   background-color: $modal-bg-color;
   padding: 8px 16px;
-  font-size: 1.5em;
+  font-size: 1.25em;
   font-weight: 500;
   align-items: center;
   box-sizing: border-box;
@@ -193,8 +185,5 @@ margin-left: 1em;
     display:flex;
     flex-direction: flex row;
     gap:0.5em;
-    &-icon{
-      color:black
-    }
   }
 }

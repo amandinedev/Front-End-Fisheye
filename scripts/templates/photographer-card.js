@@ -24,7 +24,7 @@ function photographerTemplate(data) {
       </div>
       <h2 class="article__title">${name}</h2>
     </a>
-    <div class="article__info" aria-label="information de la ou du photographe">
+    <div class="article__info">
       <p class="article__info--location">${city}, ${country}</p>
       <p class="article__info--tagline">${tagline}</p>
       <p class="article__info--price">${price}€/jour</p>
