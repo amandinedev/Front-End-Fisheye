@@ -10,11 +10,6 @@ body {
   margin: 0 100px;
 }
 
-#contact-modal {
-  display: none;
-  background-color: $modal-bg-color;;
-}
-
 .header-photographer {
   background-color: $main-bg-color;
   height: 313px;
@@ -43,7 +38,7 @@ body {
     }
 }
 
-.contact-button {
+.brown-button {
   font-size: 1.25em;//20px
   font-weight: bold;
   color: white;
@@ -117,9 +112,9 @@ margin-left: 1em;
   // display: grid;
   // grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  column-gap: 6.5vw;
   row-gap: 1rem;
   padding-top: 1rem;
   padding-bottom: 66px;
@@ -146,9 +141,9 @@ margin-left: 1em;
     height: 50px;
     padding: 5px 0;
     &--title {
-    padding: 0;
+    padding: 5px;
     margin: 0;
-    font-size: 1.4em;//24px
+    font-size: 1.4em;//reduced 
     font-weight: 400;//was 400 adjusted for contrast purpose
     color: $darkbrown; //changed from $lightbrown for contrast purpose
     }
@@ -183,7 +178,6 @@ margin-left: 1em;
   box-sizing: border-box;
   &__content--likes{
     display:flex;
-    flex-direction: flex row;
     gap:0.5em;
   }
 }

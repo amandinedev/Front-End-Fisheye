@@ -140,11 +140,6 @@ body {
   margin: 0 100px;
 }
 
-#contact-modal {
-  display: none;
-  background-color: #DB8876;
-}
-
 .header-photographer {
   background-color: #FAFAFA;
   height: 313px;
@@ -173,7 +168,7 @@ body {
   color: black;
 }
 
-.contact-button {
+.brown-button {
   font-size: 1.25em;
   font-weight: bold;
   color: white;
@@ -243,9 +238,10 @@ body {
 
 .section-medias {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  -moz-column-gap: 6.5vw;
+       column-gap: 6.5vw;
   row-gap: 1rem;
   padding-top: 1rem;
   padding-bottom: 66px;
@@ -275,7 +271,7 @@ body {
   padding: 5px 0;
 }
 .article-media__content--title {
-  padding: 0;
+  padding: 5px;
   margin: 0;
   font-size: 1.4em;
   font-weight: 400;
@@ -309,43 +305,60 @@ body {
 }
 .price-section__content--likes {
   display: flex;
-  flex-direction: flex row;
   gap: 0.5em;
 }
 
 /****** modal ***********/
+/********* DISPLAY MODAL *************/
+#contact-modal {
+  display: none;
+  position: absolute;
+  left: 33%;
+  top: 50px;
+  background-color: #DB8876;
+  width: 669px;
+  height: 900px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
 .modal {
+  position: relative;
   border-radius: 5px;
   background-color: #DB8876;
-  width: 50%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
-  padding: 35px;
+  padding: 20px 35px;
   margin: auto;
 }
 
-.modal header {
+.close-button {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  cursor: pointer;
+}
+
+.modal h2, .modal h3 {
   justify-content: space-between;
   width: 100%;
+  font-size: 4em;
+  font-weight: 400;
 }
 
 .modal header img {
   cursor: pointer;
 }
 
-.modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
-}
-
+/********* MODAL FROM *************/
 form {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 26px;
 }
 
 form label {
@@ -366,4 +379,39 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+form .message {
+  width: 100%;
+  height: 170px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5em;
+  white-space: normal;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+/********* VALIDATION MODAL *************/
+.formData[data-error]::after {
+  content: attr(data-error);
+  font-size: 1.5em;
+  color: #901C1C;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  text-align: right;
+  line-height: 0.3;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.formData[data-error-visible=true]::after {
+  opacity: 1;
+}
+
+.formData[data-error-visible=true] .text-control {
+  border: 3px solid #901C1C;
 }/*# sourceMappingURL=style.css.map */

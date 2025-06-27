@@ -28,7 +28,10 @@ async function displayData(info, media) {
   const photographerPage = headerTemplate(info);
   const headerArticleDOM = photographerPage.getUserHeaderArticleDOM();
   const headerImageDOM = photographerPage.getUserHeaderImageDOM();
-  photographerHeader.insertBefore(headerArticleDOM,photographerHeader.firstChild);
+  photographerHeader.insertBefore(
+    headerArticleDOM,
+    photographerHeader.firstChild
+  );
   photographerHeader.appendChild(headerImageDOM);
 
   //show filter
@@ -55,6 +58,42 @@ async function displayData(info, media) {
   main.appendChild(priceDOM);
 
   // show modal
+  const sectionModal = modalTemplate(info);
+  const modalDOM = sectionModal.getUserModalDOM();
+  main.appendChild(modalDOM);
+  const contactBtns = document.querySelectorAll(".contact-button");
+  contactBtns.forEach((button) => {
+    button.addEventListener("click", displayModal);
+  });
+  const closeBtns = document.querySelectorAll(".close-button");
+  closeBtns.forEach((button) => {
+    button.addEventListener("click", closeModal);
+  });
+
+  // call the modal validation
+  document
+    .getElementById("submitt-button")
+    .addEventListener("click", function (event) {
+      event.preventDefault();
+
+      if (validate()) {
+        // get firstname entry
+        const firstName = document.getElementById("first");
+        // get lastname entry
+        const lastName = document.getElementById("last");
+        // get email entry
+        const email = document.getElementById("email");
+        //get message entry
+        const message = document.getElementById("message");
+        console.log("vous avez bien rempli le formulaire");
+        console.log("Votre nom est: " + lastName.value);
+        console.log("Votre prénom est: " + firstName.value);
+        console.log("Votre email est: " + email.value);
+        console.log("Vous avez envoyé le message suivant: " + message.value);
+        closeModal();
+        resetForm();
+      }
+    });
 }
 
 // Initialize the application
