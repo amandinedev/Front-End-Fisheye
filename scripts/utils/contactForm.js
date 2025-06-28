@@ -2,20 +2,53 @@
 function displayModal() {
   const modal = document.getElementById("contact-modal");
   //  Set focus to the first form input element inside the modal.
-  const firstInput = modal.querySelector('input');
+  const firstInput = modal.querySelector("input");
   modal.style.display = "block";
-    if (firstInput) {
+  //keyboard user, focus on first input and close button
+  if (firstInput) {
     firstInput.focus();
   }
+  closeBtn = document.querySelector("close-button");
+  if (closeBtn) {
+    closeBtn.focus();
+  }
+  // Add event listener for Escape key
+  window.addEventListener("keydown", closeModalOnEscape);
+
+  // Set role="dialog" and aria-hidden="true" to main content for accessibility
+  const photographerPageMainContent = document.querySelector(
+    ".header-photographer, .section-filter, .section-medias, .section-price"
+  );
+  if (photographerPageMainContent) {
+    photographerPageMainContent.setAttribute("aria-hidden", "true");
+  }
+  modal.setAttribute("role", "dialog");
 }
+
 /********* CLOSE MODAL *************/
 function closeModal() {
   const modal = document.getElementById("contact-modal");
   modal.style.display = "none";
-  // Return focus to the contact button that triggered the modal.
+  //keyboard user, return focus to the contact button that triggered the modal.
   const contactBtn = document.querySelector(".contact-button");
-    if (contactBtn) {
+  if (contactBtn) {
     contactBtn.focus();
+  }
+  // Remove event listener for Escape key
+  window.removeEventListener("keydown", closeModalOnEscape);
+  // Set aria-hidden="false" back to main content when modal is closed.
+  const photographerPageMainContent = document.querySelector(
+    ".header-photographer, .section-medias"
+  );
+  if (photographerPageMainContent) {
+    photographerPageMainContent.removeAttribute("aria-hidden");
+  }
+}
+
+/********* CLOSE MODAL ON ESCAPE ************/
+function closeModalOnEscape(event) {
+  if (event.key === "Escape" || event.keyCode === 27) {
+    closeModal();
   }
 }
 
@@ -37,7 +70,7 @@ function clearError(element) {
 // validate firstname
 function validateFirstName() {
   // get firstname entry
-const firstName = document.getElementById("first");
+  const firstName = document.getElementById("first");
   // Clear any previous error messages
   clearError(firstName);
   // First name validation
@@ -66,7 +99,7 @@ function validateLastName() {
 // validate email
 function validateEmail() {
   // get email entry
-const email = document.getElementById("email");
+  const email = document.getElementById("email");
   // get email entry
   const emailRegex = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+$/;
   // Clear any previous error messages
@@ -85,11 +118,7 @@ function validate() {
   let lastNameValid = validateLastName();
   let emailValid = validateEmail();
   //validation rules
-  if (
-    firsNameValid &&
-    lastNameValid &&
-    emailValid
-  ) {
+  if (firsNameValid && lastNameValid && emailValid) {
     return true;
   }
 }
@@ -100,7 +129,7 @@ function resetForm() {
   const inputs = document.querySelectorAll(".formData input");
   const textarea = document.querySelector(".formData textarea");
   // Clear the input value
-  inputs.forEach(input => {
+  inputs.forEach((input) => {
     input.value = "";
   });
   // Clear the textarea value

@@ -4,7 +4,7 @@ function filterTemplate(media){
 // create DOM elements for filter section
   function getUserFilterDOM(likes, date, title){
     const filterSection = document.createElement("div");
-    filterSection.className = "filter-section";
+    filterSection.className = "section-filter";
     filterSection.innerHTML = `
     <label for="filter" class="filter-label">Trier par</label>
     <select class="filter-select" name="filter" id="filter">

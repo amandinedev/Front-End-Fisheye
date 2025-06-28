@@ -76,7 +76,7 @@ class VideoMedia extends MediaTemplate {
     articleVideo.href = ``;
     articleVideo.className = "article-media";
     articleVideo.innerHTML = `
-    <video src="${videoSrc}" controls="true" class="article-media__vid" aria-labelledby="video-description">
+    <video src="${videoSrc}" class="article-media__vid" aria-labelledby="video-description">
     <div id="video-description" class="sr-only">${this.title}</div>`;
 
     // create media content

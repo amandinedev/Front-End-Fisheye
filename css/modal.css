@@ -29,6 +29,15 @@
   right: 35px;
   cursor: pointer;
 }
+.close-button:hover, .close-button:active {
+  scale: 0.95;
+}
+.close-button:focus {
+  outline: 5px solid rgba(82, 214, 244, 0.5);
+  outline-offset: 4px;
+  border-radius: 15px;
+  background-color: transparent;
+}
 
 .modal h2, .modal h3 {
   justify-content: space-between;

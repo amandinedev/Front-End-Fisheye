@@ -134,10 +134,17 @@ body {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
   height: auto;
+  margin: 0 100px;
 }
 
-#main {
-  margin: 0 100px;
+nav {
+  display: flex;
+  height: 90px;
+  align-items: center;
+}
+
+.logo {
+  margin-left: 0;
 }
 
 .header-photographer {
@@ -339,6 +346,15 @@ body {
   top: 35px;
   right: 35px;
   cursor: pointer;
+}
+.close-button:hover, .close-button:active {
+  scale: 0.95;
+}
+.close-button:focus {
+  outline: 5px solid rgba(82, 214, 244, 0.5);
+  outline-offset: 4px;
+  border-radius: 15px;
+  background-color: transparent;
 }
 
 .modal h2, .modal h3 {

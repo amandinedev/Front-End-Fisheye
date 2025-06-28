@@ -8,11 +8,11 @@ function priceTemplate(info, media){
 // create DOM elements for filter section
   function getUserPriceDOM(){
     const priceSection = document.createElement("section");
-    priceSection.className = "price-section";
+    priceSection.className = "section-price";
     priceSection.innerHTML = `
     <div class="price-section__content--likes">
       <h2 class="price-section__content--likes-total">${totalLikes}</h2>
-      <img class="price-section__content--likes-icon" src="./assets/icons/like-black.svg" alt="">
+      <img class="price-section__content--likes-icon" src="./assets/icons/like-black.svg" alt="likes">
     </div>
     <h3 class="price-section__content--price">${price}€/jour</h3>
     `;

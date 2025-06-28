@@ -4,11 +4,22 @@ body {
   font-family: "DM Sans", sans-serif;
   font-style: normal;
   height: auto;
-}
-
-#main {
   margin: 0 100px;
 }
+
+nav {
+display: flex;
+height: 90px;
+align-items: center;
+}
+.logo {
+margin-left: 0;
+}
+// #main {
+  
+// }
+
+
 
 .header-photographer {
   background-color: $main-bg-color;

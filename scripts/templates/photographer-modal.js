@@ -1,16 +1,15 @@
 function modalTemplate(info) {
-  const {name} = info;
+  const { name } = info;
 
   // create DOM elements for filter section
   function getUserModalDOM() {
     const modalSection = document.createElement("div");
-    modalSection.id= "contact-modal";
+    modalSection.id = "contact-modal";
     modalSection.innerHTML = `
-    <section class="modal">
-     <h2>Contactez-moi</h2>
-     <h3>${name}</h3>
-     <img src="assets/icons/close.svg" class="close-button" alt="fermer le formulaire de contact" />
-    <form >
+    <section class="modal" aria-labelledby="contact-heading">
+    <h2 id= "contact-heading">Contactez-moi<br>${name}</br></h2>
+    <img src="assets/icons/close.svg" class="close-button" alt="fermer le formulaire de contact" tabindex="0"/>
+    <form aria-labelledby="formHeading">
       <div class="formData">
         <label for="first">Prénom</label>
         <input 
@@ -47,9 +46,10 @@ function modalTemplate(info) {
           type="text"
           id="message"
           name="message"
+          aria-label= votre-message
         ></textarea>
       </div>
-        <button class="brown-button" id="submitt-button">Envoyer</button>
+        <button class="brown-button" id="submitt-button" aria-label="envoyer le formulaire">Envoyer</button>
     </form>
     </section>
     `;

@@ -31,6 +31,15 @@
     top:35px;
     right: 35px;
     cursor: pointer;
+    &:hover, &:active{
+    scale: 0.95;
+    }
+    &:focus{
+    outline: 5px solid $focus-outline;
+    outline-offset: 4px;
+    border-radius: 15px;
+    background-color: transparent;
+}
 }
 
 .modal h2, .modal h3 {
