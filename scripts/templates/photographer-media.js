@@ -53,8 +53,8 @@ class ImageMedia extends MediaTemplate {
     const picture = `${this.mediaPath}/${this._image}`;
 
     // create DOM elements for Image content
-    const articleImg = document.createElement("a");
-    articleImg.href = ``;
+    const articleImg = document.createElement("article");
+    articleImg.tabIndex = 0; // Make div focusable
     articleImg.className = "article-media";
     articleImg.innerHTML = `
     <img src="${picture}" alt="" class="article-media__img">`;
@@ -72,13 +72,19 @@ class VideoMedia extends MediaTemplate {
     // construct video path
     const videoSrc = `${this.mediaPath}/${this._video}`;
 
-    const articleVideo = document.createElement("a");
-    articleVideo.href = ``;
+    const articleVideo = document.createElement("article");
+    articleVideo.tabIndex = 0; // Make div focusable
     articleVideo.className = "article-media";
     articleVideo.innerHTML = `
     <video src="${videoSrc}" class="article-media__vid" aria-labelledby="video-description">
     <div id="video-description" class="sr-only">${this.title}</div>`;
 
+     // Prevent inner video elements from being focusable
+    const videos = articleVideo.querySelectorAll('video');
+    videos.forEach(video => {
+      video.tabIndex = -1;
+    });
+    
     // create media content
     const vidContent = this.createMediaContent();
     articleVideo.appendChild(vidContent);

@@ -10,11 +10,11 @@ function priceTemplate(info, media){
     const priceSection = document.createElement("section");
     priceSection.className = "section-price";
     priceSection.innerHTML = `
-    <div class="price-section__content--likes">
-      <h2 class="price-section__content--likes-total">${totalLikes}</h2>
-      <img class="price-section__content--likes-icon" src="./assets/icons/like-black.svg" alt="likes">
+    <div class="section-price__content--likes">
+      <h2 class="section-price__content--likes-total">${totalLikes}</h2>
+      <img class="section-price__content--likes-icon" src="./assets/icons/like-black.svg" alt="likes">
     </div>
-    <h3 class="price-section__content--price">${price}€/jour</h3>
+    <h3 class="section-price__content--price">${price}€/jour</h3>
     `;
   return priceSection;
   }

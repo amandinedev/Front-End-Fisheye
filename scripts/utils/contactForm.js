@@ -6,42 +6,61 @@ function displayModal() {
   modal.style.display = "block";
   //keyboard user, focus on first input and close button
   if (firstInput) {
-    firstInput.focus();
+    setTimeout(() => {
+      firstInput.focus();
+    }, 100);
   }
-  closeBtn = document.querySelector("close-button");
-  if (closeBtn) {
+
+  closeButton = document.querySelector("close-button");
+  if (closeButton) {
     closeBtn.focus();
   }
-  // Add event listener for Escape key
+  // Add event listener for Escape key and Enter on close button
   window.addEventListener("keydown", closeModalOnEscape);
+  const closeModalBtn = modal.querySelector(".close-button");
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", closeModal);
+    closeModalBtn.focus();
+  }
 
   // Set role="dialog" and aria-hidden="true" to main content for accessibility
-  const photographerPageMainContent = document.querySelector(
-    ".header-photographer, .section-filter, .section-medias, .section-price"
+  const photographerPageMainContent = document.querySelectorAll(
+    "nav, .header-photographer, .section-filter, .section-media, .article-media, .section-price"
   );
-  if (photographerPageMainContent) {
-    photographerPageMainContent.setAttribute("aria-hidden", "true");
-  }
-  modal.setAttribute("role", "dialog");
+// Ensure that photographerPageMainContent is not null before proceeding
+if (photographerPageMainContent.length > 0) {
+  photographerPageMainContent.forEach(element => {
+    element.setAttribute("aria-hidden", "true");
+    element.style.display = 'none';
+  });
 }
+}
+
+  lightbox.setAttribute("role", "dialog");
 
 /********* CLOSE MODAL *************/
 function closeModal() {
   const modal = document.getElementById("contact-modal");
   modal.style.display = "none";
+
   //keyboard user, return focus to the contact button that triggered the modal.
-  const contactBtn = document.querySelector(".contact-button");
-  if (contactBtn) {
-    contactBtn.focus();
+  const contactButton = document.querySelector(".contact-button");
+  if (contactButton) {
+    contactButton.focus();
   }
+
   // Remove event listener for Escape key
   window.removeEventListener("keydown", closeModalOnEscape);
-  // Set aria-hidden="false" back to main content when modal is closed.
-  const photographerPageMainContent = document.querySelector(
-    ".header-photographer, .section-medias"
+
+ const photographerPageMainContent = document.querySelectorAll(
+    "nav, .header-photographer, .section-filter, .section-media, .article-media, .section-price"
   );
-  if (photographerPageMainContent) {
-    photographerPageMainContent.removeAttribute("aria-hidden");
+  // Remove aria-hidden from main content elements
+  if (photographerPageMainContent.length > 0) {
+    photographerPageMainContent.forEach(element => {
+      element.removeAttribute("aria-hidden");
+      element.style.display = "flex";
+    });
   }
 }
 
@@ -49,6 +68,13 @@ function closeModal() {
 function closeModalOnEscape(event) {
   if (event.key === "Escape" || event.keyCode === 27) {
     closeModal();
+  } else if (event.key === "Enter") {
+    const focusedElement = document.activeElement;
+    // If the close button has focus and Enter is pressed, close the modal
+    if (focusedElement && focusedElement.classList.contains("close-button")) {
+      event.preventDefault();
+      closeModal();
+    }
   }
 }
 

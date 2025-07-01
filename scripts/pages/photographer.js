@@ -65,10 +65,6 @@ async function displayData(info, media) {
   contactBtns.forEach((button) => {
     button.addEventListener("click", displayModal);
   });
-  const closeBtns = document.querySelectorAll(".close-button");
-  closeBtns.forEach((button) => {
-    button.addEventListener("click", closeModal);
-  });
 
   // call the modal validation
   document
@@ -94,6 +90,22 @@ async function displayData(info, media) {
         resetForm();
       }
     });
+
+  // show lightbox
+  const sectionLightbox = lightboxTemplate();
+  const lightboxDOM = sectionLightbox.getUserLightboxDOM();
+  main.appendChild(lightboxDOM);
+  const articleMedia = document.querySelectorAll(".article-media");
+  // articleMedia.addEventListener("click", displayLightbox);
+  
+articleMedia.forEach((media) => {
+    media.addEventListener("click", displayLightbox);
+    media.addEventListener("keydown", function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            displayLightbox(event);
+        }
+    }); // for keyboad accesssibility
+});
 }
 
 // Initialize the application

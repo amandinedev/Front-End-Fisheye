@@ -162,7 +162,7 @@ nav {
   color: #901C1C;
 }
 
-.price-section {
+.section-price {
   position: fixed;
   right: 100px;
   bottom: 0;
@@ -178,7 +178,7 @@ nav {
   align-items: center;
   box-sizing: border-box;
 }
-.price-section__content--likes {
+.section-price__content--likes {
   display: flex;
   gap: 0.5em;
 }/*# sourceMappingURL=photographer.css.map */
