@@ -112,6 +112,8 @@ function showSlides(n) {
     slides[i].style.display = "none";
   }
   // display the slide
+  if (slides[slideIndex - 1]) {
     slides[slideIndex - 1].style.display = "block";
+  }
   
 }

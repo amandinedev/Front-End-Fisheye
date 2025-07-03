@@ -133,7 +133,7 @@ class VideoLightbox extends MediaTemplate {
     const lightboxItem = document.createElement("div");
     lightboxItem.className = "carousel-item__content";
     lightboxItem.innerHTML = `
-    <video src="${videoSrc}" class="carousel-item__vid" type="video/mp4" controls="true" arialabelledby="carousel-item__vid--description"></video>
+    <video src="${videoSrc}" class="carousel-item__vid" type="video/mp4" controls="true" tabindex="0" arialabelledby="carousel-item__vid--description"></video>
     <h2 id="carousel-item__vid--description">${this._title}</h2>`;
 
 // create lightbox content
