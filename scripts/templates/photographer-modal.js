@@ -8,8 +8,8 @@ function modalTemplate(info) {
     modalSection.innerHTML = `
     <section class="modal" aria-labelledby="contact-heading">
     <h2 id= "contact-heading">Contactez-moi<br>${name}</br></h2>
-    <img src="assets/icons/close.svg" class="close-button" alt="fermer le formulaire de contact" tabindex="0"/>
-    <form aria-labelledby="formHeading">
+    <img src="assets/icons/close.svg" class="close-button" alt="fermer le formulaire de contact" role=button tabindex="0"/>
+    <form>
       <div class="formData">
         <label for="first">Prénom</label>
         <input 
@@ -49,7 +49,7 @@ function modalTemplate(info) {
           aria-label= votre-message
         ></textarea>
       </div>
-        <button class="brown-button" id="submitt-button" aria-label="envoyer le formulaire">Envoyer</button>
+        <button type="submit" id=submit-button class="brown-button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
     </form>
     </section>
     `;

@@ -24,7 +24,7 @@ async function getPhotographer() {
 async function displayData(info, media) {
   const photographerHeader = document.querySelector(".header-photographer");
 
-  // Show header
+  // SHOW HEADER
   const photographerPage = headerTemplate(info);
   const headerArticleDOM = photographerPage.getUserHeaderArticleDOM();
   const headerImageDOM = photographerPage.getUserHeaderImageDOM();
@@ -34,30 +34,32 @@ async function displayData(info, media) {
   );
   photographerHeader.appendChild(headerImageDOM);
 
-  //show filter
+  //SHOW FILTER
   const sectionFilter = filterTemplate(media);
   const filterDOM = sectionFilter.getUserFilterDOM();
   const main = document.getElementById("main");
   main.appendChild(filterDOM);
 
-  // Show media
+  // SHOW MEDIA
   const sectionMedia = document.createElement("section");
   sectionMedia.classList.add("section-medias");
   console.log("Initial media array:", media);
-  media.forEach((mediaItem) => {
+  media.forEach((mediaItem, index) => {
     const mediaElement = MediaFactory.createMedia(info, mediaItem);
     console.log("this is", mediaItem);
     const articleMediaDOM = mediaElement.getUserMediaDOM();
+    // Assigning the correct data-slide attribute
+    articleMediaDOM.setAttribute("data-slide", index + 1);
     sectionMedia.appendChild(articleMediaDOM);
   });
   main.appendChild(sectionMedia);
 
-  //show price
+  // SHOW PRICE
   const sectionPrice = priceTemplate(info, media);
   const priceDOM = sectionPrice.getUserPriceDOM();
   main.appendChild(priceDOM);
 
-  // show modal
+  // SHOW MODAL
   const sectionModal = modalTemplate(info);
   const modalDOM = sectionModal.getUserModalDOM();
   main.appendChild(modalDOM);
@@ -68,7 +70,7 @@ async function displayData(info, media) {
 
   // call the modal validation
   document
-    .getElementById("submitt-button")
+    .getElementById("submit-button")
     .addEventListener("click", function (event) {
       event.preventDefault();
 
@@ -91,21 +93,105 @@ async function displayData(info, media) {
       }
     });
 
-  // show lightbox
+  // SHOW LIGHTBOX
+  // create carousel container
   const sectionLightbox = lightboxTemplate();
   const lightboxDOM = sectionLightbox.getUserLightboxDOM();
   main.appendChild(lightboxDOM);
+  // create carousel items
+  const carousel = document.querySelector(".carousel");
+  media.forEach((mediaItem, index) => {
+    const lightboxElement = MediaFactory.createLightbox(info, mediaItem);
+    console.log(lightboxElement);
+    const carouselItem = document.createElement("li");
+    carouselItem.classList.add("carousel-item", `item-${index}`);
+    if (
+      lightboxElement instanceof ImageLightbox ||
+      lightboxElement instanceof VideoLightbox
+    ) {
+      const content = lightboxElement.createLightboxContent();
+      carouselItem.appendChild(content);
+    }
+    carousel.appendChild(carouselItem);
+  });
+
+  // Initialize the lightbox with all media items
   const articleMedia = document.querySelectorAll(".article-media");
-  // articleMedia.addEventListener("click", displayLightbox);
-  
-articleMedia.forEach((media) => {
-    media.addEventListener("click", displayLightbox);
-    media.addEventListener("keydown", function(event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            displayLightbox(event);
-        }
-    }); // for keyboad accesssibility
-});
+  articleMedia.forEach((media) => {
+    // Click event listener to display lightbox
+    media.addEventListener("click", function (event) {
+      displayLightbox(event);
+      currentSlide(parseInt(this.getAttribute("data-slide")));
+      triggeredMediaItem = this; // Store the reference to the clicked media item 
+      // to set focus back on it when the user close lightbox
+    });
+    // Keyboard event listener to display lightbox
+    media.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        displayLightbox(event);
+        currentSlide(parseInt(this.getAttribute("data-slide")));
+        triggeredMediaItem = this; // Store the reference to the clicked media item
+        // to set focus back on it when the user close lightbox
+      }
+    });
+  });
+
+  //navigate lightbox with next, previous button
+  const previousItem = document.querySelector(".previous");
+  const nextItem = document.querySelector(".next");
+
+  if (previousItem) {
+    // Click event listener for previous item
+    previousItem.addEventListener("click", function (event) {
+      plusSlides(-1);
+      event.preventDefault();
+    });
+    // Keyboard event listener for Enter key on previous item
+    previousItem.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        plusSlides(-1);
+        event.preventDefault();
+      }
+    });
+  }
+
+  if (nextItem) {
+    // Click event listener for next item
+    nextItem.addEventListener("click", function (event) {
+      plusSlides(1);
+      event.preventDefault();
+    });
+    // Keyboard event listener for Enter key on next item
+    nextItem.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        plusSlides(1);
+        event.preventDefault();
+      }
+    });
+  }
+
+  // Global keyboard control for arrow keys
+  function handleKeyDown(event) {
+    if (event.key === "ArrowLeft") {
+      if (document.activeElement === nextItem) {
+        previousItem.focus();
+      } else if (previousItem && document.activeElement !== previousItem) {
+        previousItem.focus();
+      }
+      plusSlides(-1);
+      event.preventDefault();
+    } else if (event.key === "ArrowRight") {
+      if (document.activeElement === previousItem) {
+        nextItem.focus();
+      } else if (nextItem && document.activeElement !== nextItem) {
+        nextItem.focus();
+      }
+      plusSlides(1);
+      event.preventDefault();
+    }
+  }
+
+  lightbox.addEventListener("keydown", handleKeyDown);
 }
 
 // Initialize the application

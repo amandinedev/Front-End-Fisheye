@@ -1,24 +1,3 @@
-// const clickedIndex = Array.from(document.querySelectorAll(".article-media")).indexOf(event.currentTarget);
-
-// if (clickedIndex === -1 || !lightboxTemplateInstance) return;
-
-// const main = document.querySelector("#main");
-// let lightboxDOM = document.getElementById("lightbox");
-// if (!lightboxDOM) {
-//     lightboxDOM = lightboxTemplate().getUserLightboxDOM(media);
-//     main.appendChild(lightboxDOM);
-//     console.log(lightboxDOM)
-//     lightboxDOM.style.display = "block";
-// }
-
-// // Clear existing carousel content
-// lightboxDOM.querySelector(".carousel").innerHTML = '';
-
-// Populate the carousel with media items
-// lightboxDOM.displayLightboxMedia(media);
-
-// currentItemPosition = clickedIndex;
-
 /********* DISPLAY LIGHTBOX *************/
 
 function displayLightbox(event) {
@@ -62,7 +41,7 @@ if ( event.key === "Enter" || event.key === " "){
 
   // Set role="dialog" and aria-hidden="true" to main content for accessibility
   const photographerPageMainContent = document.querySelectorAll(
-    "nav, .header-photographer, .section-filter, .section-media, .article-media, .section-price"
+    "nav, .header-photographer, .section-filter, .section-medias, .article-media, .section-price"
   );
 // Ensure that photographerPageMainContent is not null before proceeding
 if (photographerPageMainContent.length > 0) {
@@ -82,18 +61,17 @@ function closeLightbox() {
   lightbox.style.display = "none";
 
   // Return focus to the image that triggered the lightbox
-  // const mediaItem =
-  //   document.querySelector(".article-media:focus") ||
-  //   document.querySelector(".article-media");
-  // if (mediaItem) {
-  //   mediaItem.focus();
-  // }
+if (triggeredMediaItem) {
+  console.log('triggeredMediaItem', triggeredMediaItem);
+  setTimeout(() => {
+      triggeredMediaItem.focus();
+    }, 100);
 
   // Remove event listener for Escape key and Enter on close button
   window.removeEventListener("keydown", closeLightboxOnEscape);
 
   const photographerPageMainContent = document.querySelectorAll(
-    "nav, .header-photographer, .section-filter, .section-media, .article-media, .section-price"
+    "nav, .header-photographer, .section-filter, .section-medias, .article-media, .section-price"
   );
   // Remove aria-hidden from main content elements
   if (photographerPageMainContent.length > 0) {
@@ -103,83 +81,37 @@ function closeLightbox() {
     });
   }
 }
-
-
+}
 // CLOSE LIGHTBOX ON ESCAPE
 function closeLightboxOnEscape(event) {
   if (event.key === "Escape" || event.keyCode === 27) {
     closeLightbox();
   }
 }
-    // } else if (event.key === "Enter") {
-    //     const focusedElement = document.activeElement;
-    //     // Only close lightbox when Enter is pressed and focus is on the close button
-    //     if (
-    //         focusedElement &&
-    //         focusedElement.classList.contains("lightbox__close-button")
-    //     ) {
-    //         event.preventDefault();
-    //         closeLightbox();
-    //     }
-    // }
-// }
 
-// function displayLightbox() {
-//   const lightbox = document.getElementById("lightbox");
-//   lightbox.style.display = "block";
+//NAVIGATE LIGHTBOX
+let slideIndex = 1;
+showSlides(slideIndex);
 
-//   // Set focus to the next button for keyboard users
-//   const nextButton = lightbox.querySelector(".next");
-//   if (nextButton) {
-//     nextButton.focus();
-//   }
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-//   const closeLightbox = lightbox.querySelector("lightbox__close-button");
-//   if (closeLightbox) {
-//     closeLightbox.focus();
-//   }
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
 
-//   //   Add event listener for Escape key
-//   window.addEventListener("keydown", closeModalOnEscape);
-
-//   //   Set role="dialog" and aria-hidden="true" to main content for accessibility
-//   const photographerPageMainContent = document.querySelector(
-//     ".header-photographer, .section-filter, .section-medias, .section-price"
-//   );
-//   if (photographerPageMainContent) {
-//     photographerPageMainContent.setAttribute("aria-hidden", "true");
-//   }
-//   lightbox.setAttribute("role", "dialog");
-// }
-
-// //close lightbox
-// function closeLightbox() {
-//   const lightbox = document.getElementById("lightbox");
-//   lightbox.style.display = "none";
-
-//   // // Return focus to the image that triggered the lightbox.
-//   const mediaItem =
-//     document.querySelector(".article-media:focus") ||
-//     document.querySelector(".article-media");
-//   if (mediaItem) {
-//     mediaItem.focus();
-//   }
-
-//   // Remove event listener for Escape key
-//   window.removeEventListener("keydown", closeLightboxOnEscape);
-
-//   // Set aria-hidden="false" back to main content when lightbox is closed.
-//   const photographerPageMainContent = document.querySelector(
-//     ".header-photographer, .section-filter, .section-medias, .section-price"
-//   );
-//   if (photographerPageMainContent) {
-//     photographerPageMainContent.removeAttribute("aria-hidden");
-//   }
-// }
-
-// // CLOSE LIGHTBOX ON ESCAPE
-// function closeLightboxOnEscape(event) {
-//   if (event.key === "Escape" || event.keyCode === 27) {
-//     closeLightbox();
-//   }
-// }
+function showSlides(n) {
+  const slides = document.querySelectorAll(".carousel-item");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+    // Hide all slides first
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  // display the slide
+    slides[slideIndex - 1].style.display = "block";
+  
+}

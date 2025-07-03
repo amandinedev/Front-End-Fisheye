@@ -27,16 +27,17 @@ function displayModal() {
   const photographerPageMainContent = document.querySelectorAll(
     "nav, .header-photographer, .section-filter, .section-media, .article-media, .section-price"
   );
-// Ensure that photographerPageMainContent is not null before proceeding
-if (photographerPageMainContent.length > 0) {
-  photographerPageMainContent.forEach(element => {
-    element.setAttribute("aria-hidden", "true");
-    element.style.display = 'none';
-  });
-}
+  // Ensure that photographerPageMainContent is not null before proceeding
+  if (photographerPageMainContent.length > 0) {
+    photographerPageMainContent.forEach((element) => {
+      element.setAttribute("aria-hidden", "true");
+      element.style.display = "none";
+    });
+  }
+  modal.setAttribute("role", "dialog");
 }
 
-  lightbox.setAttribute("role", "dialog");
+
 
 /********* CLOSE MODAL *************/
 function closeModal() {
@@ -52,12 +53,12 @@ function closeModal() {
   // Remove event listener for Escape key
   window.removeEventListener("keydown", closeModalOnEscape);
 
- const photographerPageMainContent = document.querySelectorAll(
+  const photographerPageMainContent = document.querySelectorAll(
     "nav, .header-photographer, .section-filter, .section-media, .article-media, .section-price"
   );
   // Remove aria-hidden from main content elements
   if (photographerPageMainContent.length > 0) {
-    photographerPageMainContent.forEach(element => {
+    photographerPageMainContent.forEach((element) => {
       element.removeAttribute("aria-hidden");
       element.style.display = "flex";
     });
@@ -85,6 +86,10 @@ function showErrorMessage(element, message) {
   // add attribute to switch to error style
   element.parentElement.setAttribute("data-error", message);
   element.parentElement.setAttribute("data-error-visible", "true");
+  // Ensure the error message is announced by assistive technologies
+  element.parentElement.setAttribute('aria-live', 'polite'); // Announce changes politely
+  // Set focus on the input field with an error
+  element.focus();
 }
 // clear error message on input change
 function clearError(element) {
