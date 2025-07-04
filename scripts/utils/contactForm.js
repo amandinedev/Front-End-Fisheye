@@ -37,8 +37,6 @@ function displayModal() {
   modal.setAttribute("role", "dialog");
 }
 
-
-
 /********* CLOSE MODAL *************/
 function closeModal() {
   const modal = document.getElementById("contact-modal");
@@ -47,7 +45,9 @@ function closeModal() {
   //keyboard user, return focus to the contact button that triggered the modal.
   const contactButton = document.querySelector(".contact-button");
   if (contactButton) {
-    contactButton.focus();
+    setTimeout(() => {
+      contactButton.focus();
+    }, 100);
   }
 
   // Remove event listener for Escape key
@@ -87,7 +87,7 @@ function showErrorMessage(element, message) {
   element.parentElement.setAttribute("data-error", message);
   element.parentElement.setAttribute("data-error-visible", "true");
   // Ensure the error message is announced by assistive technologies
-  element.parentElement.setAttribute('aria-live', 'polite'); // Announce changes politely
+  element.parentElement.setAttribute("aria-live", "polite"); // Announce changes politely
   // Set focus on the input field with an error
   element.focus();
 }

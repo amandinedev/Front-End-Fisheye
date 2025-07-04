@@ -13,8 +13,6 @@ function displayLightbox(event) {
     }
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "block";
-
-
   }
 
   // Set focus to the next button for keyboard users
@@ -51,14 +49,16 @@ if (photographerPageMainContent.length > 0) {
   });
 }
 
-  lightbox.setAttribute("role", "dialog");
-
 }
 
 /********* CLOSE LIGHTBOX *************/
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
+  // lightbox.removeAttribute=("aria-hidden")
+
+  // Remove event listener for Escape key and Enter on close button
+  window.removeEventListener("keydown", closeLightboxOnEscape);
 
   // Return focus to the image that triggered the lightbox
 if (triggeredMediaItem) {
@@ -66,9 +66,6 @@ if (triggeredMediaItem) {
   setTimeout(() => {
       triggeredMediaItem.focus();
     }, 100);
-
-  // Remove event listener for Escape key and Enter on close button
-  window.removeEventListener("keydown", closeLightboxOnEscape);
 
   const photographerPageMainContent = document.querySelectorAll(
     "nav, .header-photographer, .section-filter, .section-medias, .article-media, .section-price"
@@ -114,6 +111,16 @@ function showSlides(n) {
   // display the slide
   if (slides[slideIndex - 1]) {
     slides[slideIndex - 1].style.display = "block";
+
+    updateSlideAnnouncement(slideIndex);
   }
   
+}
+
+function updateSlideAnnouncement(index) {
+  const currentSlideElement = document.querySelectorAll(".carousel-item")[index - 1];
+  if (currentSlideElement) {
+    const slideTitle = currentSlideElement.querySelector("h2").textContent;
+    document.getElementById("lightboxAnnouncement").textContent = `Showing: ${slideTitle}`;
+  }
 }

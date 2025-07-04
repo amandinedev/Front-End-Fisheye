@@ -115,9 +115,9 @@ nav {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  -moz-column-gap: 6.5vw;
-       column-gap: 6.5vw;
-  row-gap: 1rem;
+  -moz-column-gap: 9vw;
+       column-gap: 9vw;
+  row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
 }

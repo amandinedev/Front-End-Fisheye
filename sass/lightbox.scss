@@ -7,9 +7,9 @@
   left: 99px;
   top: 10px;
   background-color: rgba(255,255,255,0.5);
-  width: 88%;
-  max-width: 1242px;
-  height: 984px;
+  width: 65vw;
+  height: 94vh;
+
 }
 
 .lightbox-content {
@@ -17,7 +17,7 @@
   border-radius: 5px;
   background-color: rgba(255,255,255,0.5);
   width: 100%;
-  height: 984px;
+  height: 100%;
   display: flex;
   align-content: center;
   justify-content: space-between;
@@ -27,12 +27,14 @@
 
 .lightbox__close-button {
   position: absolute;
-  top: 35px;
-  right: 35px;
+  top: 20px;
+  left: 58.5vw;
+  scale: 0.7;
+  padding: 0.5%;
   cursor: pointer;
   &:hover,
   &:active {
-    scale: 0.95;
+    scale: 0.6;
   }
   &:focus {
     outline: 5px solid $focus-outline;
@@ -44,37 +46,36 @@
 
 .previous,
 .next {
-  width: 48px;
-  height: 60px;
-  margin-top: 34%;
+  width: 4vw;
+  height: 4.4vh;
+  margin-top: 40vh;
+  margin-left:2%;
+  margin-right:2%;
 }
 
 .carousel {
   display: flex;
-  width: 1050px;
-  height: 984px;
+  height: 100%;
   overflow: hidden;
   &-item{
     display: none;
-    width: 1050px;
-    height: 984px;
+    height: 100%;
   }
 }
 
 .carousel-item__content {
-  height: 984px;
-  width: 100%;
+  height: 100%;
 }
 
 .carousel-item__img {
-  width: 1050px;
-  height: 900px;
+  width: 54.7vw;
+  height: 83.3vh;
   object-fit: cover;
 }
 
 .carousel-item__vid {
-  width: 1050px;
-  height: 900px;
+  width: 54.7vw;
+  height: 83.3vh;
   object-fit: cover;
 }
 #carousel-item__img--description, #carousel-item__vid--description{

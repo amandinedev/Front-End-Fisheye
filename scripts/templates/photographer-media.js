@@ -49,7 +49,7 @@ class MediaTemplate {
       <h2 class="article-media__content--title">${this._title}</h2>
       <div class="article-media__content--likes">
         <h3 class="article-media__content--likes-h3">${this._likes}</h3>
-        <img class="article-media__content--likes-icon" src="./assets/icons/like-brown.svg" alt="">
+        <img class="article-media__content--likes-icon" src="./assets/icons/like-brown.svg" alt="likes">
       </div>
       `;
     return imgContent;
@@ -90,7 +90,7 @@ class VideoMedia extends MediaTemplate {
     articleVideo.className = "article-media";
     articleVideo.innerHTML = `
     <video src="${videoSrc}" class="article-media__vid" aria-labelledby="video-description">
-    <div id="video-description" class="sr-only">${this.title}</div>`;
+    <div id="video-description" class=                                                                                                                                                            ">${this.title}</div>`;
 
     // Prevent inner video elements from being focusable
     const videos = articleVideo.querySelectorAll("video");

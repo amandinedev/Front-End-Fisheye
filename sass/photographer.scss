@@ -8,18 +8,16 @@ body {
 }
 
 nav {
-display: flex;
-height: 90px;
-align-items: center;
+  display: flex;
+  height: 90px;
+  align-items: center;
 }
 .logo {
-margin-left: 0;
+  margin-left: 0;
 }
 // #main {
-  
+
 // }
-
-
 
 .header-photographer {
   background-color: $main-bg-color;
@@ -29,28 +27,28 @@ margin-left: 0;
   justify-content: space-between;
   align-items: center;
   padding: 0 50px;
-    &__section-info {
-        display: flex;
-        flex-direction: column;
-        gap: 1.2em;
-        &--title {
-            color: $lightbrown;
-            font-size: 4em; //64px
-            font-weight: 400;
-        }
-        &--location {
-            font-size: 1.5em; //was 24px
-            color: $darkbrown;
-        }
-        &--tagline {
-            font-size: 1.125em; //was 18px
-            color: black;
-       }
+  &__section-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+    &--title {
+      color: $lightbrown;
+      font-size: 4em; //64px
+      font-weight: 400;
     }
+    &--location {
+      font-size: 1.5em; //was 24px
+      color: $darkbrown;
+    }
+    &--tagline {
+      font-size: 1.125em; //was 18px
+      color: black;
+    }
+  }
 }
 
 .brown-button {
-  font-size: 1.25em;//20px
+  font-size: 1.25em; //20px
   font-weight: bold;
   color: white;
   padding: 11px;
@@ -89,32 +87,32 @@ margin-left: 0;
 }
 
 //filter
-.filter-section{
-  padding-top:1em;
+.filter-section {
+  padding-top: 1em;
 }
 .filter-label {
   font-size: 1.125em;
   font-weight: 700;
 }
-.filter-select{
-width: 170px;
-background-color: $darkbrown;
-padding: 20px;
-border: 2px solid transparent;
-border-radius: 5px;
-font-size:1.125em ;//18px
-font-weight: 700;
-color: white;
-margin-left: 1em;
+.filter-select {
+  width: 170px;
+  background-color: $darkbrown;
+  padding: 20px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  font-size: 1.125em; //18px
+  font-weight: 700;
+  color: white;
+  margin-left: 1em;
   // &:active{
   //   border-bottom: 2px solid white;
   // }
-  &__option{
+  &__option {
     cursor: pointer;
     // user-select: none;
-  &__option-container{
+    &__option-container {
       border: 2px solid white;
-  }
+    }
   }
 }
 
@@ -125,8 +123,8 @@ margin-left: 1em;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  column-gap: 6.5vw;
-  row-gap: 1rem;
+  column-gap: 9vw;
+  row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
 }
@@ -140,31 +138,32 @@ margin-left: 1em;
   box-sizing: border-box;
   // white-space: nowrap;
   overflow: hidden;
-  &__img,&__vid{
+  &__img,
+  &__vid {
     width: 350px;
     height: 300px;
     object-fit: cover;
   }
-  &__content{
+  &__content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 50px;
     padding: 5px 0;
     &--title {
-    padding: 5px;
-    margin: 0;
-    font-size: 1.4em;//reduced 
-    font-weight: 400;//was 400 adjusted for contrast purpose
-    color: $darkbrown; //changed from $lightbrown for contrast purpose
+      padding: 5px;
+      margin: 0;
+      font-size: 1.4em; //reduced
+      font-weight: 400; //was 400 adjusted for contrast purpose
+      color: $darkbrown; //changed from $lightbrown for contrast purpose
     }
     &--likes {
       display: flex;
       gap: 1em;
       &-h3 {
-      font-size: 1.5rem; //24px
-      font-weight: 500;
-      color:  $darkbrown; //changed from $lightbrown for contrast purpose
+        font-size: 1.5rem; //24px
+        font-weight: 500;
+        color: $darkbrown; //changed from $lightbrown for contrast purpose
       }
     }
   }
@@ -172,12 +171,12 @@ margin-left: 1em;
 
 //price
 
-.section-price{
+.section-price {
   position: fixed;
   right: 100px;
   bottom: 0;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   width: 376px;
   height: 50px;
   border-radius: 5px 5px 0 0;
@@ -187,8 +186,8 @@ margin-left: 1em;
   font-weight: 500;
   align-items: center;
   box-sizing: border-box;
-  &__content--likes{
-    display:flex;
-    gap:0.5em;
+  &__content--likes {
+    display: flex;
+    gap: 0.5em;
   }
 }
