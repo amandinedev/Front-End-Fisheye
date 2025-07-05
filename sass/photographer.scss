@@ -159,6 +159,7 @@ nav {
     }
     &--likes {
       display: flex;
+      cursor: pointer;
       gap: 1em;
       &-h3 {
         font-size: 1.5rem; //24px

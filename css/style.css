@@ -286,6 +286,7 @@ nav {
 }
 .article-media__content--likes {
   display: flex;
+  cursor: pointer;
   gap: 1em;
 }
 .article-media__content--likes-h3 {
@@ -441,7 +442,7 @@ form .message {
   top: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   width: 65vw;
-  height: 93vh;
+  height: 94vh;
 }
 
 .lightbox-content {

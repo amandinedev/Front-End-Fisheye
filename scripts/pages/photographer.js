@@ -58,6 +58,45 @@ async function displayData(info, media) {
   const sectionPrice = priceTemplate(info, media);
   const priceDOM = sectionPrice.getUserPriceDOM();
   main.appendChild(priceDOM);
+  // likes counter
+  let totalLikes = 0; // Global variable to track total likes
+  const mediaTotalLikes = media.reduce(
+    (acc, mediaItem) => acc + mediaItem.likes,
+    0
+  ); // Initial total from media data
+
+  const likeIcons = document.querySelectorAll(
+    ".article-media__content--likes-icon"
+  );
+  const initialTotalLikesElement = document.querySelector(
+    ".section-price__content--likes-total"
+  );
+
+  if (initialTotalLikesElement) {
+    totalLikes =
+      parseInt(initialTotalLikesElement.textContent, 10) || mediaTotalLikes;
+  }
+
+  likeIcons.forEach(function (likeIcon) {
+    let likesCountElement = likeIcon
+      .closest(".article-media__content")
+      .querySelector(".article-media__content--likes-h3");
+    let likesCount = parseInt(likesCountElement.textContent, 10) || 0;
+
+    likeIcon.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent the click from bubbling up to trigger lightbox
+
+      if (likeIcon.dataset.liked === "true") return; // Prevent further clicks
+
+      likesCount += 1;
+      likesCountElement.textContent = likesCount;
+
+      totalLikes += 1; // Update global total likes count
+      initialTotalLikesElement.textContent = totalLikes; //update DOM element
+
+      likeIcon.dataset.liked = "true"; // Mark as liked to prevent further clicks
+    });
+  });
 
   // SHOW MODAL
   const sectionModal = modalTemplate(info);
@@ -122,7 +161,7 @@ async function displayData(info, media) {
     media.addEventListener("click", function (event) {
       displayLightbox(event);
       currentSlide(parseInt(this.getAttribute("data-slide")));
-      triggeredMediaItem = this; // Store the reference to the clicked media item 
+      triggeredMediaItem = this; // Store the reference to the clicked media item
       // to set focus back on it when the user close lightbox
     });
     // Keyboard event listener to display lightbox
