@@ -57,7 +57,14 @@ nav {
   border: none;
   background-color: $darkbrown;
   border-radius: 5px;
+  border: 2px transparent;
   cursor: pointer;
+  &:hover,
+  &:focus {
+    background-color: $modal-bg-color;
+    color: black;
+    border: 2px solid white;
+  }
 }
 
 //photographer portrait
@@ -161,6 +168,7 @@ nav {
       display: flex;
       cursor: pointer;
       gap: 1em;
+      padding-right: 9px;
       &-h3 {
         font-size: 1.5rem; //24px
         font-weight: 500;

@@ -83,20 +83,36 @@ async function displayData(info, media) {
       .querySelector(".article-media__content--likes-h3");
     let likesCount = parseInt(likesCountElement.textContent, 10) || 0;
 
+    function updateLikeStatus(isLiked) {
+    likeIcon.dataset.liked = isLiked;
+    likeIcon.setAttribute("aria-pressed", isLiked);
+  }
+    //add eventlistener for click
     likeIcon.addEventListener("click", function (event) {
       event.stopPropagation(); // Prevent the click from bubbling up to trigger lightbox
-
-      if (likeIcon.dataset.liked === "true") return; // Prevent further clicks
-
-      likesCount += 1;
-      likesCountElement.textContent = likesCount;
-
-      totalLikes += 1; // Update global total likes count
-      initialTotalLikesElement.textContent = totalLikes; //update DOM element
-
-      likeIcon.dataset.liked = "true"; // Mark as liked to prevent further clicks
-    });
+      handleLikeAction();
   });
+
+    // Add event listeners for keydown
+    likeIcon.addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.stopPropagation(); // Prevent the keydown from bubbling up to trigger lightbox
+      handleLikeAction();
+    }
+  });
+
+  function handleLikeAction() {
+  if (likeIcon.dataset.liked === "true") return; // Prevent further clicks
+  likesCount += 1;
+  likesCountElement.textContent = likesCount;
+  totalLikes += 1; // Update global total likes count
+  initialTotalLikesElement.textContent = totalLikes; //update DOM element
+  likeIcon.src = './assets/icons/like-brown-filled.svg'; // Update like icon source
+  updateLikeStatus(true);
+}
+
+});
+      
 
   // SHOW MODAL
   const sectionModal = modalTemplate(info);

@@ -7,13 +7,13 @@ function priceTemplate(info, media){
   console.log(`Initial total likes from media: ${mediaTotalLikes}`);
 
 // create DOM elements for filter section
-  function getUserPriceDOM(total){
+  function getUserPriceDOM(){
     const priceSection = document.createElement("section");
     priceSection.className = "section-price";
     priceSection.innerHTML = `
     <div class="section-price__content--likes">
       <h2 class="section-price__content--likes-total">${mediaTotalLikes}</h2>
-      <img class="section-price__content--likes-icon" src="./assets/icons/like-black.svg" alt="likes">
+      <img class="section-price__content--likes-icon" src="./assets/icons/like-black.svg" alt="likes au total">
     </div>
     <h3 class="section-price__content--price">${price}€/jour</h3>
     `;
@@ -22,7 +22,5 @@ function priceTemplate(info, media){
   }
   return {likes, price, mediaTotalLikes, getUserPriceDOM};
 };
-
-
 
 

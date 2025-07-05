@@ -53,7 +53,13 @@ nav {
   border: none;
   background-color: #901C1C;
   border-radius: 5px;
+  border: 2px transparent;
   cursor: pointer;
+}
+.brown-button:hover, .brown-button:focus {
+  background-color: #db8876;
+  color: black;
+  border: 2px solid white;
 }
 
 .article__img--rounded {
@@ -156,6 +162,7 @@ nav {
   display: flex;
   cursor: pointer;
   gap: 1em;
+  padding-right: 9px;
 }
 .article-media__content--likes-h3 {
   font-size: 1.5rem;
@@ -172,7 +179,7 @@ nav {
   width: 376px;
   height: 50px;
   border-radius: 5px 5px 0 0;
-  background-color: #DB8876;
+  background-color: #db8876;
   padding: 8px 16px;
   font-size: 1.25em;
   font-weight: 500;

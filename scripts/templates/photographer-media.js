@@ -47,9 +47,9 @@ class MediaTemplate {
     imgContent.classList.add("article-media__content");
     imgContent.innerHTML = `
       <h2 class="article-media__content--title">${this._title}</h2>
-      <div class="article-media__content--likes">
+      <div class="article-media__content--likes" >
         <h3 class="article-media__content--likes-h3">${this._likes}</h3>
-        <img class="article-media__content--likes-icon" src="./assets/icons/like-brown.svg" alt="likes">
+        <img class="article-media__content--likes-icon" src="./assets/icons/like-brown.svg" alt="likes" role="button" aria-pressed="false" tabindex="0">
       </div>
       `;
     return imgContent;
