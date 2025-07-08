@@ -40,15 +40,46 @@ async function displayData(info, media) {
   const main = document.getElementById("main");
   main.appendChild(filterDOM);
 
-//   Add event listeners for the filter functionality
+  //sort media based on selected criteria
+  function sortMedia(media, sortBy) {
+    switch (sortBy) {
+      case "Popularité":
+        return media.sort((a, b) => b.likes - a.likes);
+      case "Date":
+        return media.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+      case "Titre":
+      default:
+        return media.sort((a, b) => a.title.localeCompare(b.title));
+    }
+  }
 
-const filterButton = document.getElementById("filter");
-const filterOptions = document.getElementById("filter-options");
-const filterClosedImgElement = document.getElementById("filter-closed");
-const filterOpenedImgElement = document.getElementById("filter-opened");
+  function updateDOMWithSortedMedia(sortedMedia) {
+    const sectionMedia = document.querySelector(".section-medias");
+    // Clear existing articles
+    while (sectionMedia.firstChild) {
+      sectionMedia.removeChild(sectionMedia.firstChild);
+    }
 
+    sortedMedia.forEach((mediaItem, index) => {
+      const mediaElement = MediaFactory.createMedia(info, mediaItem);
+      const articleMediaDOM = mediaElement.getUserMediaDOM();
+      // Assigning the correct data-slide attribute
+      articleMediaDOM.setAttribute("data-slide", index + 1);
+      sectionMedia.appendChild(articleMediaDOM);
+      setupLikeEventListeners(); // Reattach like event listeners after updating DOM
+    });
+  }
 
-filterButton.addEventListener("click", () => {
+  //   Add event listeners for the filter functionality
+
+  const filterButton = document.getElementById("filter");
+  const filterOptions = document.getElementById("filter-options");
+  const filterClosedImgElement = document.getElementById("filter-closed");
+  const filterOpenedImgElement = document.getElementById("filter-opened");
+
+  filterButton.addEventListener("click", () => {
     const isExpanded = filterButton.getAttribute("aria-expanded") === "true";
     filterButton.setAttribute("aria-expanded", !isExpanded);
     // Toggle the display of the filter options
@@ -78,6 +109,7 @@ filterButton.addEventListener("click", () => {
 
   filterOptions.addEventListener("click", (event) => {
     if (event.target.tagName === "LI") {
+      const selectedFilter = event.target.textContent;
       filterButton.textContent = event.target.textContent;
       filterOptions.style.display = "none";
       filterButton.setAttribute("aria-expanded", false);
@@ -86,75 +118,82 @@ filterButton.addEventListener("click", () => {
       filterOpenedImgElement.style.display = "none";
       // Handle filter option selection logic here
       console.log(`Selected filter: ${event.target.getAttribute("value")}`);
+      // Sort media based on selected filter and update DOM
+      const sortedMedia = sortMedia(media, selectedFilter);
+      updateDOMWithSortedMedia(sortedMedia);
+      // Reset total likes to initial value before sorting
+      totalLikes = mediaTotalLikes;
+      initialTotalLikesElement.textContent = totalLikes; //update DOM element
+      //attach like event listeners after updating DOM
+      setupLikeEventListeners();
       // Refocus on the filter button
       filterButton.focus();
     }
   });
 
   // Add keyboard event listeners for accessibility
-filterButton.addEventListener("keydown", (event) => {
-  switch (event.key) {
-    case "Enter":
-    case " ":
-      event.preventDefault();
-      filterButton.click();
-      // Move focus to the first item in the filter options
-      const firstOption = document.querySelector("#filter-options li");
-      if (firstOption) {
-      firstOption.focus();
-      }
-      break;
+  filterButton.addEventListener("keydown", (event) => {
+    switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        filterButton.click();
+        // Move focus to the first item in the filter options
+        const firstOption = document.querySelector("#filter-options li");
+        if (firstOption) {
+          firstOption.focus();
+        }
+        break;
+    }
+  });
+
+  filterOptions.addEventListener("keydown", (event) => {
+    const options = Array.from(filterOptions.children);
+    let currentIndex = options.indexOf(document.activeElement);
+
+    switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        if (options[currentIndex]) {
+          options[currentIndex].click();
+        }
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        focusNextOption(currentIndex);
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        focusPreviousOption(currentIndex);
+        break;
+      case "Escape":
+        filterButton.focus();
+        filterOptions.style.display = "none";
+        filterClosedImgElement.style.display = "block";
+        filterOpenedImgElement.style.display = "none";
+        filterButton.setAttribute("aria-expanded", false);
+        break;
+    }
+  });
+
+  function focusNextOption(currentIndex) {
+    const options = Array.from(filterOptions.children);
+    let nextIndex = (currentIndex + 1) % options.length;
+    while (options[nextIndex].tagName !== "LI") {
+      nextIndex = (nextIndex + 1) % options.length;
+    }
+    options[nextIndex].focus();
   }
-});
 
-filterOptions.addEventListener("keydown", (event) => {
-  const options = Array.from(filterOptions.children);
-  let currentIndex = options.indexOf(document.activeElement);
-
-  switch (event.key) {
-    case "Enter":
-    case " ":
-      event.preventDefault();
-      if (options[currentIndex]) {
-        options[currentIndex].click();
-      }
-      break;
-    case "ArrowDown":
-      event.preventDefault();
-      focusNextOption(currentIndex);
-      break;
-    case "ArrowUp":
-      event.preventDefault();
-      focusPreviousOption(currentIndex);
-      break;
-    case "Escape":
-      filterButton.focus();
-      filterOptions.style.display = "none";
-      filterClosedImgElement.style.display = "block";
-      filterOpenedImgElement.style.display = "none";
-      filterButton.setAttribute("aria-expanded", false);
-      break;
+  function focusPreviousOption(currentIndex) {
+    const options = Array.from(filterOptions.children);
+    let prevIndex = (currentIndex - 1 + options.length) % options.length;
+    while (options[prevIndex].tagName !== "LI") {
+      prevIndex = (prevIndex - 1 + options.length) % options.length;
+    }
+    options[prevIndex].focus();
   }
-});
-
-function focusNextOption(currentIndex) {
-  const options = Array.from(filterOptions.children);
-  let nextIndex = (currentIndex + 1) % options.length;
-  while (options[nextIndex].tagName !== "LI") {
-    nextIndex = (nextIndex + 1) % options.length;
-  }
-  options[nextIndex].focus();
-}
-
-function focusPreviousOption(currentIndex) {
-  const options = Array.from(filterOptions.children);
-  let prevIndex = (currentIndex - 1 + options.length) % options.length;
-  while (options[prevIndex].tagName !== "LI") {
-    prevIndex = (prevIndex - 1 + options.length) % options.length;
-  }
-  options[prevIndex].focus();
-}
-
 
   // SHOW MEDIA
   const sectionMedia = document.createElement("section");
@@ -174,6 +213,7 @@ function focusPreviousOption(currentIndex) {
   const sectionPrice = priceTemplate(info, media);
   const priceDOM = sectionPrice.getUserPriceDOM();
   main.appendChild(priceDOM);
+
   // likes counter
   let totalLikes = 0; // Global variable to track total likes
   const mediaTotalLikes = media.reduce(
@@ -181,9 +221,50 @@ function focusPreviousOption(currentIndex) {
     0
   ); // Initial total from media data
 
-  const likeIcons = document.querySelectorAll(
-    ".article-media__content--likes-icon"
-  );
+  function setupLikeEventListeners() {
+    const likeIcons = document.querySelectorAll(
+      ".article-media__content--likes-icon"
+    );
+
+    likeIcons.forEach(function (likeIcon) {
+      let likesCountElement = likeIcon
+        .closest(".article-media__content")
+        .querySelector(".article-media__content--likes-h3");
+      let likesCount = parseInt(likesCountElement.textContent, 10) || 0;
+
+      function updateLikeStatus(isLiked) {
+        likeIcon.dataset.liked = isLiked;
+        likeIcon.setAttribute("aria-pressed", isLiked);
+      }
+      //add eventlistener for click
+      likeIcon.addEventListener("click", function (event) {
+        event.stopPropagation(); // Prevent the click from bubbling up to trigger lightbox
+        handleLikeAction();
+      });
+
+      // Add event listeners for keydown
+      likeIcon.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.stopPropagation(); // Prevent the keydown from bubbling up to trigger lightbox
+          handleLikeAction();
+        }
+      });
+
+      function handleLikeAction() {
+        if (likeIcon.dataset.liked === "true") return; // Prevent further clicks
+        likesCount += 1;
+        likesCountElement.textContent = likesCount;
+        totalLikes += 1; // Update global total likes count
+        initialTotalLikesElement.textContent = totalLikes; //update DOM element
+        likeIcon.src = "./assets/icons/like-brown-filled.svg"; // Update like icon source
+        updateLikeStatus(true);
+      }
+    });
+  }
+
+  // likes counter
+  totalLikes = mediaTotalLikes;
+
   const initialTotalLikesElement = document.querySelector(
     ".section-price__content--likes-total"
   );
@@ -193,42 +274,7 @@ function focusPreviousOption(currentIndex) {
       parseInt(initialTotalLikesElement.textContent, 10) || mediaTotalLikes;
   }
 
-  likeIcons.forEach(function (likeIcon) {
-    let likesCountElement = likeIcon
-      .closest(".article-media__content")
-      .querySelector(".article-media__content--likes-h3");
-    let likesCount = parseInt(likesCountElement.textContent, 10) || 0;
-
-    function updateLikeStatus(isLiked) {
-    likeIcon.dataset.liked = isLiked;
-    likeIcon.setAttribute("aria-pressed", isLiked);
-  }
-    //add eventlistener for click
-    likeIcon.addEventListener("click", function (event) {
-      event.stopPropagation(); // Prevent the click from bubbling up to trigger lightbox
-      handleLikeAction();
-  });
-
-    // Add event listeners for keydown
-    likeIcon.addEventListener("keydown", function(event) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.stopPropagation(); // Prevent the keydown from bubbling up to trigger lightbox
-      handleLikeAction();
-    }
-  });
-
-  function handleLikeAction() {
-  if (likeIcon.dataset.liked === "true") return; // Prevent further clicks
-  likesCount += 1;
-  likesCountElement.textContent = likesCount;
-  totalLikes += 1; // Update global total likes count
-  initialTotalLikesElement.textContent = totalLikes; //update DOM element
-  likeIcon.src = './assets/icons/like-brown-filled.svg'; // Update like icon source
-  updateLikeStatus(true);
-}
-
-});
-      
+  setupLikeEventListeners();
 
   // SHOW MODAL
   const sectionModal = modalTemplate(info);
