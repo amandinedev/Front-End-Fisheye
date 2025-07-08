@@ -40,6 +40,122 @@ async function displayData(info, media) {
   const main = document.getElementById("main");
   main.appendChild(filterDOM);
 
+//   Add event listeners for the filter functionality
+
+const filterButton = document.getElementById("filter");
+const filterOptions = document.getElementById("filter-options");
+const filterClosedImgElement = document.getElementById("filter-closed");
+const filterOpenedImgElement = document.getElementById("filter-opened");
+
+
+filterButton.addEventListener("click", () => {
+    const isExpanded = filterButton.getAttribute("aria-expanded") === "true";
+    filterButton.setAttribute("aria-expanded", !isExpanded);
+    // Toggle the display of the filter options
+    filterOptions.style.display = isExpanded ? "none" : "block";
+    // Change the icon based on the expanded state
+    if (!isExpanded) {
+      filterClosedImgElement.style.display = "none";
+      filterOpenedImgElement.style.display = "block"; // Show the opened icon
+    } else {
+      filterOpenedImgElement.style.display = "none";
+      filterClosedImgElement.style.display = "block"; // Show the closed icon
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      !filterButton.contains(event.target) &&
+      !filterOptions.contains(event.target)
+    ) {
+      filterButton.setAttribute("aria-expanded", false);
+      filterOptions.style.display = "none";
+      // Ensure the closed image is shown
+      filterClosedImgElement.style.display = "block";
+      filterOpenedImgElement.style.display = "none";
+    }
+  });
+
+  filterOptions.addEventListener("click", (event) => {
+    if (event.target.tagName === "LI") {
+      filterButton.textContent = event.target.textContent;
+      filterOptions.style.display = "none";
+      filterButton.setAttribute("aria-expanded", false);
+      // Change the image back to closed state
+      filterClosedImgElement.style.display = "block";
+      filterOpenedImgElement.style.display = "none";
+      // Handle filter option selection logic here
+      console.log(`Selected filter: ${event.target.getAttribute("value")}`);
+      // Refocus on the filter button
+      filterButton.focus();
+    }
+  });
+
+  // Add keyboard event listeners for accessibility
+filterButton.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "Enter":
+    case " ":
+      event.preventDefault();
+      filterButton.click();
+      // Move focus to the first item in the filter options
+      const firstOption = document.querySelector("#filter-options li");
+      if (firstOption) {
+      firstOption.focus();
+      }
+      break;
+  }
+});
+
+filterOptions.addEventListener("keydown", (event) => {
+  const options = Array.from(filterOptions.children);
+  let currentIndex = options.indexOf(document.activeElement);
+
+  switch (event.key) {
+    case "Enter":
+    case " ":
+      event.preventDefault();
+      if (options[currentIndex]) {
+        options[currentIndex].click();
+      }
+      break;
+    case "ArrowDown":
+      event.preventDefault();
+      focusNextOption(currentIndex);
+      break;
+    case "ArrowUp":
+      event.preventDefault();
+      focusPreviousOption(currentIndex);
+      break;
+    case "Escape":
+      filterButton.focus();
+      filterOptions.style.display = "none";
+      filterClosedImgElement.style.display = "block";
+      filterOpenedImgElement.style.display = "none";
+      filterButton.setAttribute("aria-expanded", false);
+      break;
+  }
+});
+
+function focusNextOption(currentIndex) {
+  const options = Array.from(filterOptions.children);
+  let nextIndex = (currentIndex + 1) % options.length;
+  while (options[nextIndex].tagName !== "LI") {
+    nextIndex = (nextIndex + 1) % options.length;
+  }
+  options[nextIndex].focus();
+}
+
+function focusPreviousOption(currentIndex) {
+  const options = Array.from(filterOptions.children);
+  let prevIndex = (currentIndex - 1 + options.length) % options.length;
+  while (options[prevIndex].tagName !== "LI") {
+    prevIndex = (prevIndex - 1 + options.length) % options.length;
+  }
+  options[prevIndex].focus();
+}
+
+
   // SHOW MEDIA
   const sectionMedia = document.createElement("section");
   sectionMedia.classList.add("section-medias");
