@@ -2,7 +2,7 @@
 // get photographer data (info and media)
 async function getPhotographer() {
   // get photographers data
-  const response = await fetch("../data/photographers.json");
+  const response = await fetch("data/photographers.json");
   const photographersData = await response.json();
   console.log("Les données des photographes:", photographersData);
   // get photographer id from urlParams
