@@ -58,6 +58,7 @@ nav {
 .brown-button:hover, .brown-button:focus {
   background-color: #db8876;
   color: black;
+  border: 2px solid white;
 }
 
 .article__img--rounded {
@@ -191,8 +192,7 @@ nav {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  -moz-column-gap: 9vw;
-       column-gap: 9vw;
+  column-gap: 9vw;
   row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
@@ -211,8 +211,7 @@ nav {
 .article-media__img, .article-media__vid {
   width: 350px;
   height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .article-media__content {
   display: flex;

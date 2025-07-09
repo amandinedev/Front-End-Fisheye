@@ -62,6 +62,9 @@ nav {
   &:focus {
     background-color: $modal-bg-color;
     color: black;
+  &.submit{
+    border: 2px solid white;
+  }
   }
 }
 

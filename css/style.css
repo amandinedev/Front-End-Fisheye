@@ -323,8 +323,7 @@ nav {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  -moz-column-gap: 9vw;
-       column-gap: 9vw;
+  column-gap: 9vw;
   row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
@@ -343,8 +342,7 @@ nav {
 .article-media__img, .article-media__vid {
   width: 350px;
   height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .article-media__content {
   display: flex;
@@ -585,17 +583,15 @@ form .message {
 }
 
 .carousel-item__img {
-  width: 54.7vw;
+  width: 45vw;
   height: 82.5vh;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .carousel-item__vid {
   width: 45vw;
   height: 82.5vh;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 #carousel-item__img--description, #carousel-item__vid--description {
