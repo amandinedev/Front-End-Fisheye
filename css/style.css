@@ -182,16 +182,14 @@ nav {
   padding: 11px;
   width: 170px;
   height: 70px;
-  border: none;
   background-color: #901C1C;
   border-radius: 5px;
-  border: 2px transparent;
+  border: none;
   cursor: pointer;
 }
 .brown-button:hover, .brown-button:focus {
   background-color: #db8876;
   color: black;
-  border: 2px solid white;
 }
 
 .article__img--rounded {
@@ -286,7 +284,7 @@ nav {
 .article-media__content--title {
   padding: 5px;
   margin: 0;
-  font-size: 1.4em;
+  font-size: 1.35em;
   font-weight: 400;
   color: #901C1C;
 }
@@ -388,6 +386,7 @@ form {
 form label {
   color: #312E2E;
   font-size: 36px;
+  margin-bottom: 5px;
 }
 
 form div {
@@ -418,13 +417,20 @@ form .message {
   padding: 10px;
 }
 
+.submit:hover {
+  border: 2px solid white;
+}
+.submit:focus {
+  border: 2px solid white;
+}
+
 /********* VALIDATION MODAL *************/
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 1.5em;
   color: #901C1C;
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 7px;
   text-align: right;
   line-height: 0.3;
@@ -507,23 +513,22 @@ form .message {
 }
 
 .carousel-item__img {
-  width: 45vw;
-  height: 83.3vh;
+  width: 54.7vw;
+  height: 82.5vh;
   -o-object-fit: cover;
      object-fit: cover;
-  transform: translateY(10px);
 }
 
 .carousel-item__vid {
   width: 45vw;
-  height: 83.3vh;
+  height: 82.5vh;
   -o-object-fit: cover;
      object-fit: cover;
-  transform: translateY(10px);
 }
 
 #carousel-item__img--description, #carousel-item__vid--description {
   font-size: 1.5em;
   font-weight: 400;
+  padding: 10px 0px;
   color: #901C1C;
 }/*# sourceMappingURL=style.css.map */

@@ -69,19 +69,20 @@
 
 .carousel-item__img {
   width: 54.7vw;
-  height: 83.3vh;
+  height: 82.5vh;
   object-fit: cover;
 }
 
 
 .carousel-item__vid {
   width: 45vw;
-  height: 83.3vh;
+  height: 82.5vh;
   object-fit: cover;
 }
 #carousel-item__img--description, #carousel-item__vid--description{
     font-size: 1.5em;
     font-weight: 400;
+    padding: 10px 0px;
     color: $darkbrown;
   }
 

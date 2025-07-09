@@ -54,16 +54,14 @@ nav {
   padding: 11px;
   width: 170px;
   height: 70px;
-  border: none;
   background-color: $darkbrown;
   border-radius: 5px;
-  border: 2px transparent;
+  border: none;
   cursor: pointer;
   &:hover,
   &:focus {
     background-color: $modal-bg-color;
     color: black;
-    border: 2px solid white;
   }
 }
 
@@ -160,7 +158,7 @@ nav {
     &--title {
       padding: 5px;
       margin: 0;
-      font-size: 1.4em; //reduced
+      font-size: 1.35em; //reduced
       font-weight: 400; //was 400 adjusted for contrast purpose
       color: $darkbrown; //changed from $lightbrown for contrast purpose
     }

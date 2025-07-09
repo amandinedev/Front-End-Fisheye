@@ -11,13 +11,13 @@ class MediaFactory {
   }
   //to create lightbox elements based on their type
   static createLightbox(info, media) {
-      if (media.image) {
-        return new ImageLightbox(info, media);
-      } else if (media.video) {
-        return new VideoLightbox(info, media);
-      } else {
-        throw new Error(`Unsupported media type: ${media.type}`);
-      }
+    if (media.image) {
+      return new ImageLightbox(info, media);
+    } else if (media.video) {
+      return new VideoLightbox(info, media);
+    } else {
+      throw new Error(`Unsupported media type: ${media.type}`);
+    }
   }
 }
 
@@ -55,7 +55,7 @@ class MediaTemplate {
     return imgContent;
   }
   createLightboxContent() {
-  throw new Error("Method 'createLightboxContent()' must be implemented.");
+    throw new Error("Method 'createLightboxContent()' must be implemented.");
   }
 }
 
@@ -112,7 +112,7 @@ class ImageLightbox extends MediaTemplate {
   createLightboxContent() {
     // construct image path
     const picture = `${this.mediaPath}/${this._image}`;
-   
+
     // create DOM elements for Image content
     const lightboxItem = document.createElement("div");
     lightboxItem.className = "carousel-item__content";
@@ -126,7 +126,7 @@ class ImageLightbox extends MediaTemplate {
 
 class VideoLightbox extends MediaTemplate {
   createLightboxContent() {
-      // construct video path
+    // construct video path
     const videoSrc = `${this.mediaPath}/${this._video}`;
 
     // create DOM elements for video content
@@ -136,7 +136,7 @@ class VideoLightbox extends MediaTemplate {
     <video src="${videoSrc}" class="carousel-item__vid" type="video/mp4" controls="true" tabindex="0" arialabelledby="carousel-item__vid--description"></video>
     <h2 id="carousel-item__vid--description">${this._title}</h2>`;
 
-// create lightbox content
+    // create lightbox content
     return lightboxItem;
   }
 }

@@ -49,7 +49,7 @@ function modalTemplate(info) {
           aria-label= votre-message
         ></textarea>
       </div>
-        <button type="submit" id=submit-button class="brown-button" aria-label="Envoyer le formulaire de contact">Envoyer</button>
+        <button type="submit" id=submit-button class="brown-button submit" aria-label="Envoyer le formulaire de contact">Envoyer</button>
     </form>
     </section>
     `;

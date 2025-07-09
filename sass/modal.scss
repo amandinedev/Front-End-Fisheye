@@ -64,6 +64,7 @@ form {
 form label {
     color: #312E2E;
     font-size: 36px;
+    margin-bottom: 5px;
 }
 
 form div {
@@ -94,16 +95,15 @@ form .message {
     padding:10px;
 }
 
-// .modal-bg {
-//     position: absolute;
-//     top:0;
-//     left:0;
-//     display: block;
-//     width: 400%;
-//     height: 400%;
-//     background-color: rgba($color: #000000, $alpha: 0.25);
-//     z-index: -1;
-// }
+.submit{
+    &:hover{
+  border: 2px solid white;
+    }
+    &:focus{
+  border: 2px solid white;
+    }
+}
+
 
 /********* VALIDATION MODAL *************/
 .formData[data-error]::after {
@@ -112,7 +112,7 @@ form .message {
 //   color: #e54858;
   color: $darkbrown;
   display: block;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 7px;
   text-align: right;
   line-height: 0.3;
