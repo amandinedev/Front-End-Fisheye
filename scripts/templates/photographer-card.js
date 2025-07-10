@@ -4,21 +4,21 @@ function photographerTemplate(data) {
 
   //construct a full URL access to the portrait image
   const picture = `assets/photographers/${portrait}`;
-  
-    function checkImageSize(img, name) {
-      const width = img.width;
-      const height = img.height;
-      console.log("Image " + name + " width:", img.width);
-      console.log("Image " + name + " height:", img.height);
-      if (width === height) {
-        img.className += "article__img--square";
-      }
+
+  function checkImageSize(img, name) {
+    const width = img.width;
+    const height = img.height;
+    console.log("Image " + name + " width:", img.width);
+    console.log("Image " + name + " height:", img.height);
+    if (width === height) {
+      img.className += "article__img--square";
     }
+  }
 
   //dynamically creates en article element containing an image and a heading for the photographer.
   function getUserCardDOM() {
     const article = document.createElement("article");
-    article.innerHTML =  `
+    article.innerHTML = `
      <a href="photographer.html?id=${id}" aria-label="aller vers la page de ${name}">
       <div class="article__img--rounded">
       </div>

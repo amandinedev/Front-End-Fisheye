@@ -53,5 +53,15 @@ function headerTemplate(info) {
       `;
     return section;
   }
-  return { name, id, city, country, tagline, price, picture, getUserHeaderArticleDOM, getUserHeaderImageDOM };
+  return {
+    name,
+    id,
+    city,
+    country,
+    tagline,
+    price,
+    picture,
+    getUserHeaderArticleDOM,
+    getUserHeaderImageDOM,
+  };
 }

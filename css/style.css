@@ -191,6 +191,9 @@ nav {
   background-color: #db8876;
   color: black;
 }
+.brown-button:hover.submit, .brown-button:focus.submit {
+  border: 2px solid white;
+}
 
 .article__img--rounded {
   height: 200px;
@@ -220,7 +223,7 @@ nav {
      object-fit: contain;
 }
 
-.filter-section {
+.section-filter {
   display: flex;
   flex-direction: row;
   margin-top: 1em;
@@ -323,7 +326,8 @@ nav {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  column-gap: 9vw;
+  -moz-column-gap: 9vw;
+       column-gap: 9vw;
   row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
@@ -342,7 +346,8 @@ nav {
 .article-media__img, .article-media__vid {
   width: 350px;
   height: 300px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .article-media__content {
   display: flex;
@@ -583,15 +588,17 @@ form .message {
 }
 
 .carousel-item__img {
-  width: 45vw;
+  width: 54.7vw;
   height: 82.5vh;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .carousel-item__vid {
   width: 45vw;
   height: 82.5vh;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #carousel-item__img--description, #carousel-item__vid--description {

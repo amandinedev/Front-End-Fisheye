@@ -70,8 +70,31 @@ async function displayData(info, media) {
       sectionMedia.appendChild(articleMediaDOM);
       setupLikeEventListeners(); // Reattach like event listeners after updating DOM
     });
+    setupLightboxEventListeners(sortedMedia);
   }
 
+  // Function to set up lightbox event listeners for media articles
+  function setupLightboxEventListeners(sortedMedia) {
+    const articleMedia = document.querySelectorAll(".article-media");
+    articleMedia.forEach((media, index) => {
+      // Click event listener to display lightbox
+      media.addEventListener("click", function (event) {
+        displayLightbox(event);
+        currentSlide(parseInt(this.getAttribute("data-slide")));
+        triggeredMediaItem = this; // Store the reference to the clicked media item
+        // to set focus back on it when the user close lightbox
+      });
+      // Keyboard event listener to display lightbox
+      media.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          displayLightbox(event);
+          currentSlide(parseInt(this.getAttribute("data-slide")));
+          triggeredMediaItem = this; // Store the reference to the clicked media item
+          // to set focus back on it when the user close lightbox
+        }
+      });
+    });
+  }
   //   Add event listeners for the filter functionality
 
   const filterButton = document.getElementById("filter");
@@ -342,6 +365,7 @@ async function displayData(info, media) {
       triggeredMediaItem = this; // Store the reference to the clicked media item
       // to set focus back on it when the user close lightbox
     });
+
     // Keyboard event listener to display lightbox
     media.addEventListener("keydown", function (event) {
       if (event.key === "Enter" || event.key === " ") {

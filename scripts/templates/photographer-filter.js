@@ -4,8 +4,8 @@ function filterTemplate(media) {
   // create DOM elements for filter section
   function getUserFilterDOM(likes, date, title) {
     const filterSection = document.createElement("div");
-    filterSection.className = "filter-section";
-    filterSection.id = "filter-section";
+    filterSection.className = "section-filter";
+    filterSection.id = "section-filter";
     filterSection.innerHTML = `
     <h2 aria-labelledby="filter" class="filter-label">Trier par</h2>
     <div class="filter-select">
@@ -26,7 +26,3 @@ function filterTemplate(media) {
   }
   return { likes, date, title, getUserFilterDOM };
 }
-
-
-
-

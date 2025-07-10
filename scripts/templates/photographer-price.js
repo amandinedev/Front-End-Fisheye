@@ -1,13 +1,13 @@
-function priceTemplate(info, media){
-//extract photographer data properties
-  const {price} = info;
-  const {likes} = media;
+function priceTemplate(info, media) {
+  //extract photographer data properties
+  const { price } = info;
+  const { likes } = media;
 
   const mediaTotalLikes = media.reduce((acc, media) => acc + media.likes, 0);
   console.log(`Initial total likes from media: ${mediaTotalLikes}`);
 
-// create DOM elements for filter section
-  function getUserPriceDOM(){
+  // create DOM elements for filter section
+  function getUserPriceDOM() {
     const priceSection = document.createElement("section");
     priceSection.className = "section-price";
     priceSection.innerHTML = `
@@ -18,9 +18,7 @@ function priceTemplate(info, media){
     <h3 class="section-price__content--price">${price}€/jour</h3>
     `;
 
-  return priceSection;
+    return priceSection;
   }
-  return {likes, price, mediaTotalLikes, getUserPriceDOM};
-};
-
-
+  return { likes, price, mediaTotalLikes, getUserPriceDOM };
+}

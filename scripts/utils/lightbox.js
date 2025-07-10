@@ -11,8 +11,8 @@ function displayLightbox(event) {
     if (event.type === "keydown" && event.key === " ") {
       event.preventDefault();
     }
-  const lightbox = document.getElementById("lightbox");
-  lightbox.style.display = "block";
+    const lightbox = document.getElementById("lightbox");
+    lightbox.style.display = "block";
   }
 
   // Set focus to the next button for keyboard users
@@ -30,25 +30,24 @@ function displayLightbox(event) {
   if (closeLightboxBtn) {
     closeLightboxBtn.addEventListener("click", closeLightbox);
     closeLightboxBtn.focus();
-    closeLightboxBtn.addEventListener("keydown", function(event){
-if ( event.key === "Enter" || event.key === " "){
-  closeLightbox();
-}
-});
+    closeLightboxBtn.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        closeLightbox();
+      }
+    });
   }
 
   // Set role="dialog" and aria-hidden="true" to main content for accessibility
   const photographerPageMainContent = document.querySelectorAll(
     "nav, .header-photographer, .section-filter, .section-medias, .article-media, .section-price"
   );
-// Ensure that photographerPageMainContent is not null before proceeding
-if (photographerPageMainContent.length > 0) {
-  photographerPageMainContent.forEach(element => {
-    element.setAttribute("aria-hidden", "true");
-    element.style.display = 'none';
-  });
-}
-
+  // Ensure that photographerPageMainContent is not null before proceeding
+  if (photographerPageMainContent.length > 0) {
+    photographerPageMainContent.forEach((element) => {
+      element.setAttribute("aria-hidden", "true");
+      element.style.display = "none";
+    });
+  }
 }
 
 /********* CLOSE LIGHTBOX *************/
@@ -61,23 +60,23 @@ function closeLightbox() {
   window.removeEventListener("keydown", closeLightboxOnEscape);
 
   // Return focus to the image that triggered the lightbox
-if (triggeredMediaItem) {
-  console.log('triggeredMediaItem', triggeredMediaItem);
-  setTimeout(() => {
+  if (triggeredMediaItem) {
+    console.log("triggeredMediaItem", triggeredMediaItem);
+    setTimeout(() => {
       triggeredMediaItem.focus();
     }, 100);
 
-  const photographerPageMainContent = document.querySelectorAll(
-    "nav, .header-photographer, .section-filter, .section-medias, .article-media, .section-price"
-  );
-  // Remove aria-hidden from main content elements
-  if (photographerPageMainContent.length > 0) {
-    photographerPageMainContent.forEach(element => {
-      element.removeAttribute("aria-hidden");
-      element.style.display = "flex";
-    });
+    const photographerPageMainContent = document.querySelectorAll(
+      "nav, .header-photographer, .section-filter, .section-medias, .article-media, .section-price"
+    );
+    // Remove aria-hidden from main content elements
+    if (photographerPageMainContent.length > 0) {
+      photographerPageMainContent.forEach((element) => {
+        element.removeAttribute("aria-hidden");
+        element.style.display = "flex";
+      });
+    }
   }
-}
 }
 // CLOSE LIGHTBOX ON ESCAPE
 function closeLightboxOnEscape(event) {
@@ -92,19 +91,23 @@ showSlides(slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+  showSlides((slideIndex += n));
 }
 
 // Thumbnail image controls
 function currentSlide(n) {
-  showSlides(slideIndex = n);
+  showSlides((slideIndex = n));
 }
 
 function showSlides(n) {
   const slides = document.querySelectorAll(".carousel-item");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-    // Hide all slides first
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  // Hide all slides first
   for (let i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";
   }
@@ -114,13 +117,15 @@ function showSlides(n) {
 
     updateSlideAnnouncement(slideIndex);
   }
-  
 }
 
 function updateSlideAnnouncement(index) {
-  const currentSlideElement = document.querySelectorAll(".carousel-item")[index - 1];
+  const currentSlideElement =
+    document.querySelectorAll(".carousel-item")[index - 1];
   if (currentSlideElement) {
     const slideTitle = currentSlideElement.querySelector("h2").textContent;
-    document.getElementById("lightboxAnnouncement").textContent = `Showing: ${slideTitle}`;
+    document.getElementById(
+      "lightboxAnnouncement"
+    ).textContent = `Showing: ${slideTitle}`;
   }
 }
