@@ -216,6 +216,8 @@ nav {
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center 35%;
+     object-position: center 35%;
 }
 .article-media__content {
   display: flex;

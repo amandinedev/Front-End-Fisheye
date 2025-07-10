@@ -21,7 +21,7 @@
   outline: 5px solid rgba(82, 214, 244, 0.5);
   outline-offset: 4px;
   border-radius: 15px;
-  background-color: #FAFAFA;
+  background-color: #fafafa;
 }
 
 /*.......general......*/
@@ -47,7 +47,7 @@ header {
 .header-title {
   font-size: 2.25em;
   font-weight: 400;
-  color: #901C1C;
+  color: #901c1c;
   margin-right: 100px;
 }
 
@@ -73,7 +73,7 @@ header {
   text-decoration: none;
 }
 .photographer-section article a .article__title {
-  color: #D3573C;
+  color: #d3573c;
   font-size: 2.25em;
   font-weight: 400;
   margin-top: 16px;
@@ -96,15 +96,13 @@ header {
   height: 358px;
   position: absolute;
   top: -50px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 .photographer-section article a .article__img--square {
   height: 200px;
   position: absolute;
   top: 0px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 .article__info {
@@ -115,7 +113,7 @@ header {
 }
 .article__info--location {
   font-size: 1.06em;
-  color: #901C1C;
+  color: #901c1c;
   margin: 0;
 }
 .article__info--tagline {
@@ -148,7 +146,7 @@ nav {
 }
 
 .header-photographer {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   height: 313px;
   display: flex;
   flex-direction: row;
@@ -162,13 +160,13 @@ nav {
   gap: 1.2em;
 }
 .header-photographer__section-info--title {
-  color: #D3573C;
+  color: #d3573c;
   font-size: 4em;
   font-weight: 400;
 }
 .header-photographer__section-info--location {
   font-size: 1.5em;
-  color: #901C1C;
+  color: #901c1c;
 }
 .header-photographer__section-info--tagline {
   font-size: 1.125em;
@@ -182,16 +180,18 @@ nav {
   padding: 11px;
   width: 170px;
   height: 70px;
-  background-color: #901C1C;
+  background-color: #901c1c;
   border-radius: 5px;
   border: none;
   cursor: pointer;
 }
-.brown-button:hover, .brown-button:focus {
+.brown-button:hover,
+.brown-button:focus {
   background-color: #db8876;
   color: black;
 }
-.brown-button:hover.submit, .brown-button:focus.submit {
+.brown-button:hover.submit,
+.brown-button:focus.submit {
   border: 2px solid white;
 }
 
@@ -212,15 +212,13 @@ nav {
   height: 358px;
   position: absolute;
   top: -50px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 .article__img--square {
   height: 200px;
   position: absolute;
   top: 0px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 
 .section-filter {
@@ -229,7 +227,8 @@ nav {
   margin-top: 1em;
 }
 
-#filter-opened, #filter-closed {
+#filter-opened,
+#filter-closed {
   height: 9.88px;
   width: 16px;
   position: absolute;
@@ -244,7 +243,7 @@ nav {
 .filter-select {
   cursor: pointer;
   position: relative;
-  background-color: #901C1C;
+  background-color: #901c1c;
   color: white;
   width: 170px;
   height: 70px;
@@ -254,7 +253,8 @@ nav {
   font-weight: 900;
   border-radius: 5px;
 }
-.filter-select:hover, .filter-select:focus {
+.filter-select:hover,
+.filter-select:focus {
   border-radius: 5px;
   color: black;
   background-color: #db8876;
@@ -276,7 +276,7 @@ nav {
   padding: 0;
   margin: 0;
   color: white;
-  background-color: #901C1C;
+  background-color: #901c1c;
   height: 210px;
   position: absolute;
   top: 0;
@@ -300,7 +300,8 @@ nav {
   padding: 8px 20px;
   cursor: pointer;
 }
-.filter-option-list li:hover, .filter-option-list li:focus {
+.filter-option-list li:hover,
+.filter-option-list li:focus {
   color: black;
   background-color: #db8876;
   outline: none;
@@ -316,7 +317,8 @@ nav {
   cursor: pointer;
   padding: 8px 20px;
 }
-#filter:hover, #filter:focus {
+#filter:hover,
+#filter:focus {
   color: black;
   border-radius: 5px;
   background-color: #db8876;
@@ -326,8 +328,7 @@ nav {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  -moz-column-gap: 9vw;
-       column-gap: 9vw;
+  column-gap: 9vw;
   row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
@@ -343,11 +344,12 @@ nav {
   box-sizing: border-box;
   overflow: hidden;
 }
-.article-media__img, .article-media__vid {
+.article-media__img,
+.article-media__vid {
   width: 350px;
   height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
+  object-position: center 35%;
 }
 .article-media__content {
   display: flex;
@@ -361,7 +363,7 @@ nav {
   margin: 0;
   font-size: 1.35em;
   font-weight: 400;
-  color: #901C1C;
+  color: #901c1c;
 }
 .article-media__content--likes {
   display: flex;
@@ -372,7 +374,7 @@ nav {
 .article-media__content--likes-h3 {
   font-size: 1.5rem;
   font-weight: 500;
-  color: #901C1C;
+  color: #901c1c;
 }
 
 .section-price {
@@ -401,7 +403,7 @@ nav {
 #contact-modal {
   display: none;
   position: absolute;
-  left: 33%;
+  left: 28%;
   top: 50px;
   background-color: #db8876;
   width: 669px;
@@ -428,7 +430,8 @@ nav {
   right: 35px;
   cursor: pointer;
 }
-.close-button:hover, .close-button:active {
+.close-button:hover,
+.close-button:active {
   scale: 0.95;
 }
 .close-button:focus {
@@ -438,7 +441,8 @@ nav {
   background-color: transparent;
 }
 
-.modal h2, .modal h3 {
+.modal h2,
+.modal h3 {
   justify-content: space-between;
   width: 100%;
   font-size: 4em;
@@ -459,7 +463,7 @@ form {
 }
 
 form label {
-  color: #312E2E;
+  color: #312e2e;
   font-size: 36px;
   margin-bottom: 5px;
 }
@@ -503,7 +507,7 @@ form .message {
 .formData[data-error]::after {
   content: attr(data-error);
   font-size: 1.5em;
-  color: #901C1C;
+  color: #901c1c;
   display: block;
   margin-top: 20px;
   margin-bottom: 7px;
@@ -513,12 +517,12 @@ form .message {
   transition: 0.3s;
 }
 
-.formData[data-error-visible=true]::after {
+.formData[data-error-visible="true"]::after {
   opacity: 1;
 }
 
-.formData[data-error-visible=true] .text-control {
-  border: 3px solid #901C1C;
+.formData[data-error-visible="true"] .text-control {
+  border: 3px solid #901c1c;
 }
 
 /****** lightbox ***********/
@@ -530,7 +534,7 @@ form .message {
   top: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   width: 65vw;
-  height: 94vh;
+  height: 100vh;
 }
 
 .lightbox-content {
@@ -554,7 +558,8 @@ form .message {
   padding: 0.5%;
   cursor: pointer;
 }
-.lightbox__close-button:hover, .lightbox__close-button:active {
+.lightbox__close-button:hover,
+.lightbox__close-button:active {
   scale: 0.6;
 }
 .lightbox__close-button:focus {
@@ -589,21 +594,22 @@ form .message {
 
 .carousel-item__img {
   width: 54.7vw;
-  height: 82.5vh;
-  -o-object-fit: cover;
-     object-fit: cover;
+  height: 87.5vh;
+  object-fit: cover;
+  object-position: center 35%;
 }
 
 .carousel-item__vid {
-  width: 45vw;
-  height: 82.5vh;
-  -o-object-fit: cover;
-     object-fit: cover;
+  width: 54.7vw;
+  height: 87.5vh;
+  object-fit: cover;
+  object-position: center 35%;
 }
 
-#carousel-item__img--description, #carousel-item__vid--description {
+#carousel-item__img--description,
+#carousel-item__vid--description {
   font-size: 1.5em;
   font-weight: 400;
   padding: 10px 0px;
-  color: #901C1C;
-}/*# sourceMappingURL=style.css.map */
+  color: #901c1c;
+} /*# sourceMappingURL=style.css.map */

@@ -74,7 +74,7 @@ async function displayData(info, media) {
   }
 
   // Function to set up lightbox event listeners for media articles
-  function setupLightboxEventListeners(sortedMedia) {
+  function setupLightboxEventListeners() {
     const articleMedia = document.querySelectorAll(".article-media");
     articleMedia.forEach((media, index) => {
       // Click event listener to display lightbox
@@ -96,7 +96,6 @@ async function displayData(info, media) {
     });
   }
   //   Add event listeners for the filter functionality
-
   const filterButton = document.getElementById("filter");
   const filterOptions = document.getElementById("filter-options");
   const filterClosedImgElement = document.getElementById("filter-closed");
@@ -237,7 +236,7 @@ async function displayData(info, media) {
   const priceDOM = sectionPrice.getUserPriceDOM();
   main.appendChild(priceDOM);
 
-  // likes counter
+  // Set up likes counter and event listeners
   let totalLikes = 0; // Global variable to track total likes
   const mediaTotalLikes = media.reduce(
     (acc, mediaItem) => acc + mediaItem.likes,
@@ -357,25 +356,8 @@ async function displayData(info, media) {
 
   // Initialize the lightbox with all media items
   const articleMedia = document.querySelectorAll(".article-media");
-  articleMedia.forEach((media) => {
-    // Click event listener to display lightbox
-    media.addEventListener("click", function (event) {
-      displayLightbox(event);
-      currentSlide(parseInt(this.getAttribute("data-slide")));
-      triggeredMediaItem = this; // Store the reference to the clicked media item
-      // to set focus back on it when the user close lightbox
-    });
+  setupLightboxEventListeners(articleMedia);
 
-    // Keyboard event listener to display lightbox
-    media.addEventListener("keydown", function (event) {
-      if (event.key === "Enter" || event.key === " ") {
-        displayLightbox(event);
-        currentSlide(parseInt(this.getAttribute("data-slide")));
-        triggeredMediaItem = this; // Store the reference to the clicked media item
-        // to set focus back on it when the user close lightbox
-      }
-    });
-  });
 
   //navigate lightbox with next, previous button
   const previousItem = document.querySelector(".previous");

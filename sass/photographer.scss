@@ -224,6 +224,7 @@ right: 15px;
     width: 350px;
     height: 300px;
     object-fit: cover;
+    object-position: center calc(35%);
   }
   &__content {
     display: flex;
