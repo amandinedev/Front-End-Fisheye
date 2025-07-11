@@ -101,20 +101,34 @@ async function displayData(info, media) {
   const filterClosedImgElement = document.getElementById("filter-closed");
   const filterOpenedImgElement = document.getElementById("filter-opened");
 
-  filterButton.addEventListener("click", () => {
-    const isExpanded = filterButton.getAttribute("aria-expanded") === "true";
-    filterButton.setAttribute("aria-expanded", !isExpanded);
-    // Toggle the display of the filter options
-    filterOptions.style.display = isExpanded ? "none" : "block";
-    // Change the icon based on the expanded state
-    if (!isExpanded) {
-      filterClosedImgElement.style.display = "none";
-      filterOpenedImgElement.style.display = "block"; // Show the opened icon
-    } else {
-      filterOpenedImgElement.style.display = "none";
-      filterClosedImgElement.style.display = "block"; // Show the closed icon
+  function handleFilterButtonClick() {
+  const isExpanded = filterButton.getAttribute("aria-expanded") === "true";
+  filterButton.setAttribute("aria-expanded", !isExpanded);
+  // Toggle the display of the filter options
+  filterOptions.style.display = isExpanded ? "none" : "block";
+
+  if (!isExpanded) {
+    // Move focus to the first item in the filter options when opened
+    const firstOption = document.querySelector("#filter-options li");
+    if (firstOption) {
+      firstOption.focus();
     }
-  });
+  } else {
+    // Refocus on the filter button when closed
+    filterButton.focus();
+  }
+
+  // Change the icon based on the expanded state
+  if (!isExpanded) {
+    filterClosedImgElement.style.display = "none";
+    filterOpenedImgElement.style.display = "block"; // Show the opened icon
+  } else {
+    filterOpenedImgElement.style.display = "none";
+    filterClosedImgElement.style.display = "block"; // Show the closed icon
+  }
+}
+
+filterButton.addEventListener("click", handleFilterButtonClick);
 
   document.addEventListener("click", (event) => {
     if (
@@ -158,13 +172,7 @@ async function displayData(info, media) {
     switch (event.key) {
       case "Enter":
       case " ":
-        event.preventDefault();
-        filterButton.click();
-        // Move focus to the first item in the filter options
-        const firstOption = document.querySelector("#filter-options li");
-        if (firstOption) {
-          firstOption.focus();
-        }
+        handleFilterButtonClick();
         break;
     }
   });
@@ -181,6 +189,7 @@ async function displayData(info, media) {
           options[currentIndex].click();
         }
         break;
+      case "Tab":
       case "ArrowDown":
         event.preventDefault();
         focusNextOption(currentIndex);
@@ -273,14 +282,22 @@ async function displayData(info, media) {
       });
 
       function handleLikeAction() {
-        if (likeIcon.dataset.liked === "true") return; // Prevent further clicks
-        likesCount += 1;
-        likesCountElement.textContent = likesCount;
-        totalLikes += 1; // Update global total likes count
-        initialTotalLikesElement.textContent = totalLikes; //update DOM element
-        likeIcon.src = "./assets/icons/like-brown-filled.svg"; // Update like icon source
-        updateLikeStatus(true);
-      }
+    if (likeIcon.dataset.liked === "true") {
+    // If already liked, unlike the article and decrement like counts
+    likesCount -= 1;
+    totalLikes -= 1; // Update global total likes count
+    initialTotalLikesElement.textContent = totalLikes; // update DOM element
+    likeIcon.src = "./assets/icons/like-brown.svg"; // Reset like icon source
+    updateLikeStatus(false);
+  } else {
+    // Like the article and increment like counts
+    likesCount += 1;
+    totalLikes += 1; // Update global total likes count
+    initialTotalLikesElement.textContent = totalLikes; //update DOM element
+    likeIcon.src = "./assets/icons/like-brown-filled.svg"; // Update like icon source
+    updateLikeStatus(true);
+  }
+}
     });
   }
 
@@ -431,3 +448,4 @@ async function init() {
 }
 
 init();
+
