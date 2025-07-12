@@ -68,8 +68,9 @@ async function displayData(info, media) {
       // Assigning the correct data-slide attribute
       articleMediaDOM.setAttribute("data-slide", index + 1);
       sectionMedia.appendChild(articleMediaDOM);
-      setupLikeEventListeners(); // Reattach like event listeners after updating DOM
+      // setupLikeEventListeners(); // Reattach like event listeners after updating DOM
     });
+    setupLikeEventListeners(sortedMedia);
     setupLightboxEventListeners(sortedMedia);
   }
 
@@ -152,8 +153,6 @@ filterButton.addEventListener("click", handleFilterButtonClick);
       // Change the image back to closed state
       filterClosedImgElement.style.display = "block";
       filterOpenedImgElement.style.display = "none";
-      // Handle filter option selection logic here
-      console.log(`Selected filter: ${event.target.getAttribute("value")}`);
       // Sort media based on selected filter and update DOM
       const sortedMedia = sortMedia(media, selectedFilter);
       updateDOMWithSortedMedia(sortedMedia);
@@ -161,7 +160,7 @@ filterButton.addEventListener("click", handleFilterButtonClick);
       totalLikes = mediaTotalLikes;
       initialTotalLikesElement.textContent = totalLikes; //update DOM element
       //attach like event listeners after updating DOM
-      setupLikeEventListeners();
+      // setupLikeEventListeners();
       // Refocus on the filter button
       filterButton.focus();
     }
@@ -286,7 +285,6 @@ filterButton.addEventListener("click", handleFilterButtonClick);
     // If already liked, unlike the article and decrement like counts
     likesCount -= 1;
     totalLikes -= 1; // Update global total likes count
-    initialTotalLikesElement.textContent = totalLikes; // update DOM element
     likeIcon.src = "./assets/icons/like-brown.svg"; // Reset like icon source
     updateLikeStatus(false);
   } else {
@@ -297,6 +295,8 @@ filterButton.addEventListener("click", handleFilterButtonClick);
     likeIcon.src = "./assets/icons/like-brown-filled.svg"; // Update like icon source
     updateLikeStatus(true);
   }
+  likesCountElement.textContent = likesCount;
+  initialTotalLikesElement.textContent = totalLikes; // update DOM element
 }
     });
   }
