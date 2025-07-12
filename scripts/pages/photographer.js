@@ -68,16 +68,36 @@ async function displayData(info, media) {
       // Assigning the correct data-slide attribute
       articleMediaDOM.setAttribute("data-slide", index + 1);
       sectionMedia.appendChild(articleMediaDOM);
-      // setupLikeEventListeners(); // Reattach like event listeners after updating DOM
     });
-    setupLikeEventListeners(sortedMedia);
-    setupLightboxEventListeners(sortedMedia);
+    setupLikeEventListeners();
+    setupLightboxEventListeners();
+  }
+
+  function updateCarouselWithSortedMedia(sortedMedia) {
+    const carousel = document.querySelector(".carousel");
+    // Clear existing carousel items
+    while (carousel.firstChild) {
+      carousel.removeChild(carousel.firstChild);
+    }
+    sortedMedia.forEach((mediaItem, index) => {
+      const lightboxElement = MediaFactory.createLightbox(info, mediaItem);
+      const carouselItem = document.createElement("li");
+      carouselItem.classList.add("carousel-item", `item-${index}`);
+      if (
+        lightboxElement instanceof ImageLightbox ||
+        lightboxElement instanceof VideoLightbox
+      ) {
+        const content = lightboxElement.createLightboxContent();
+        carouselItem.appendChild(content);
+      }
+      carousel.appendChild(carouselItem);
+    });
   }
 
   // Function to set up lightbox event listeners for media articles
   function setupLightboxEventListeners() {
     const articleMedia = document.querySelectorAll(".article-media");
-    articleMedia.forEach((media, index) => {
+    articleMedia.forEach((media) => {
       // Click event listener to display lightbox
       media.addEventListener("click", function (event) {
         displayLightbox(event);
@@ -103,33 +123,33 @@ async function displayData(info, media) {
   const filterOpenedImgElement = document.getElementById("filter-opened");
 
   function handleFilterButtonClick() {
-  const isExpanded = filterButton.getAttribute("aria-expanded") === "true";
-  filterButton.setAttribute("aria-expanded", !isExpanded);
-  // Toggle the display of the filter options
-  filterOptions.style.display = isExpanded ? "none" : "block";
+    const isExpanded = filterButton.getAttribute("aria-expanded") === "true";
+    filterButton.setAttribute("aria-expanded", !isExpanded);
+    // Toggle the display of the filter options
+    filterOptions.style.display = isExpanded ? "none" : "block";
 
-  if (!isExpanded) {
-    // Move focus to the first item in the filter options when opened
-    const firstOption = document.querySelector("#filter-options li");
-    if (firstOption) {
-      firstOption.focus();
+    if (!isExpanded) {
+      // Move focus to the first item in the filter options when opened
+      const firstOption = document.querySelector("#filter-options li");
+      if (firstOption) {
+        firstOption.focus();
+      }
+    } else {
+      // Refocus on the filter button when closed
+      filterButton.focus();
     }
-  } else {
-    // Refocus on the filter button when closed
-    filterButton.focus();
+
+    // Change the icon based on the expanded state
+    if (!isExpanded) {
+      filterClosedImgElement.style.display = "none";
+      filterOpenedImgElement.style.display = "block"; // Show the opened icon
+    } else {
+      filterOpenedImgElement.style.display = "none";
+      filterClosedImgElement.style.display = "block"; // Show the closed icon
+    }
   }
 
-  // Change the icon based on the expanded state
-  if (!isExpanded) {
-    filterClosedImgElement.style.display = "none";
-    filterOpenedImgElement.style.display = "block"; // Show the opened icon
-  } else {
-    filterOpenedImgElement.style.display = "none";
-    filterClosedImgElement.style.display = "block"; // Show the closed icon
-  }
-}
-
-filterButton.addEventListener("click", handleFilterButtonClick);
+  filterButton.addEventListener("click", handleFilterButtonClick);
 
   document.addEventListener("click", (event) => {
     if (
@@ -156,6 +176,7 @@ filterButton.addEventListener("click", handleFilterButtonClick);
       // Sort media based on selected filter and update DOM
       const sortedMedia = sortMedia(media, selectedFilter);
       updateDOMWithSortedMedia(sortedMedia);
+      updateCarouselWithSortedMedia(sortedMedia); // Recreate carousel items based on the new order
       // Reset total likes to initial value before sorting
       totalLikes = mediaTotalLikes;
       initialTotalLikesElement.textContent = totalLikes; //update DOM element
@@ -238,6 +259,7 @@ filterButton.addEventListener("click", handleFilterButtonClick);
     sectionMedia.appendChild(articleMediaDOM);
   });
   main.appendChild(sectionMedia);
+  setupLightboxEventListeners();
 
   // SHOW PRICE
   const sectionPrice = priceTemplate(info, media);
@@ -281,23 +303,23 @@ filterButton.addEventListener("click", handleFilterButtonClick);
       });
 
       function handleLikeAction() {
-    if (likeIcon.dataset.liked === "true") {
-    // If already liked, unlike the article and decrement like counts
-    likesCount -= 1;
-    totalLikes -= 1; // Update global total likes count
-    likeIcon.src = "./assets/icons/like-brown.svg"; // Reset like icon source
-    updateLikeStatus(false);
-  } else {
-    // Like the article and increment like counts
-    likesCount += 1;
-    totalLikes += 1; // Update global total likes count
-    initialTotalLikesElement.textContent = totalLikes; //update DOM element
-    likeIcon.src = "./assets/icons/like-brown-filled.svg"; // Update like icon source
-    updateLikeStatus(true);
-  }
-  likesCountElement.textContent = likesCount;
-  initialTotalLikesElement.textContent = totalLikes; // update DOM element
-}
+        if (likeIcon.dataset.liked === "true") {
+          // If already liked, unlike the article and decrement like counts
+          likesCount -= 1;
+          totalLikes -= 1; // Update global total likes count
+          likeIcon.src = "./assets/icons/like-brown.svg"; // Reset like icon source
+          updateLikeStatus(false);
+        } else {
+          // Like the article and increment like counts
+          likesCount += 1;
+          totalLikes += 1; // Update global total likes count
+          initialTotalLikesElement.textContent = totalLikes; //update DOM element
+          likeIcon.src = "./assets/icons/like-brown-filled.svg"; // Update like icon source
+          updateLikeStatus(true);
+        }
+        likesCountElement.textContent = likesCount;
+        initialTotalLikesElement.textContent = totalLikes; // update DOM element
+      }
     });
   }
 
@@ -375,7 +397,6 @@ filterButton.addEventListener("click", handleFilterButtonClick);
   const articleMedia = document.querySelectorAll(".article-media");
   setupLightboxEventListeners(articleMedia);
 
-
   //navigate lightbox with next, previous button
   const previousItem = document.querySelector(".previous");
   const nextItem = document.querySelector(".next");
@@ -448,4 +469,3 @@ async function init() {
 }
 
 init();
-

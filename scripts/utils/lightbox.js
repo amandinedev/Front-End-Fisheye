@@ -126,6 +126,6 @@ function updateSlideAnnouncement(index) {
     const slideTitle = currentSlideElement.querySelector("h2").textContent;
     document.getElementById(
       "lightboxAnnouncement"
-    ).textContent = `Showing: ${slideTitle}`;
+    ).textContent = `${slideTitle}`;
   }
 }
