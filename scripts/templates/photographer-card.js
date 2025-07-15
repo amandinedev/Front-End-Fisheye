@@ -8,8 +8,6 @@ function photographerTemplate(data) {
   function checkImageSize(img, name) {
     const width = img.width;
     const height = img.height;
-    console.log("Image " + name + " width:", img.width);
-    console.log("Image " + name + " height:", img.height);
     if (width === height) {
       img.className += "article__img--square";
     }
@@ -38,8 +36,6 @@ function photographerTemplate(data) {
     img.onload = function () {
       const width = img.width;
       const height = img.height;
-      console.log("Image " + name + " width:", img.width);
-      console.log("Image " + name + " height:", img.height);
       if (width === height) {
         img.className = "article__img--square";
       }

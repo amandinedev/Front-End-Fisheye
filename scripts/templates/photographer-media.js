@@ -33,10 +33,9 @@ class MediaTemplate {
   }
 
   getUserMediaDOM() {
-    throw new Error("Method 'getUserMediaDOM()' must be implemented.");
+    // throw new Error("Method 'getUserMediaDOM()' must be implemented.");
   }
 
-  // construct the media path
   getMediaPath() {
     return `assets/media/${this._name.replace(/\s+/g, "").replace(/\-/g, "")}`;
   }

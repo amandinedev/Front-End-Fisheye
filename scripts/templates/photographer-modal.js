@@ -1,7 +1,6 @@
 function modalTemplate(info) {
   const { name } = info;
 
-  // create DOM elements for filter section
   function getUserModalDOM() {
     const modalSection = document.createElement("div");
     modalSection.id = "contact-modal";

@@ -4,11 +4,11 @@ async function getPhotographer() {
   // get photographers data
   const response = await fetch("data/photographers.json");
   const photographersData = await response.json();
-  console.log("Les données des photographes:", photographersData);
+  // console.log("Les données des photographes:", photographersData);
   // get photographer id from urlParams
   const urlParams = new URLSearchParams(window.location.search);
   const id = parseInt(urlParams.get("id"));
-  console.log("photographe id:", id);
+  // console.log("photographe id:", id);
   // get photographer data
   const photographer = photographersData.photographers.filter(
     (photographer) => photographer.id === id
@@ -249,10 +249,8 @@ async function displayData(info, media) {
   // SHOW MEDIA
   const sectionMedia = document.createElement("section");
   sectionMedia.classList.add("section-medias");
-  console.log("Initial media array:", media);
-  media.forEach((mediaItem, index) => {
+   media.forEach((mediaItem, index) => {
     const mediaElement = MediaFactory.createMedia(info, mediaItem);
-    console.log("this is", mediaItem);
     const articleMediaDOM = mediaElement.getUserMediaDOM();
     // Assigning the correct data-slide attribute
     articleMediaDOM.setAttribute("data-slide", index + 1);
@@ -380,7 +378,6 @@ async function displayData(info, media) {
   const carousel = document.querySelector(".carousel");
   media.forEach((mediaItem, index) => {
     const lightboxElement = MediaFactory.createLightbox(info, mediaItem);
-    console.log(lightboxElement);
     const carouselItem = document.createElement("li");
     carouselItem.classList.add("carousel-item", `item-${index}`);
     if (
@@ -464,7 +461,6 @@ async function init() {
   if (info && media) {
     displayData(info, media);
   } else {
-    console.error("No matching photographer found");
   }
 }
 

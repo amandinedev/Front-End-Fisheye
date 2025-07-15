@@ -1,7 +1,5 @@
 function filterTemplate(media) {
-  //extract photographer data properties
   const { likes, date, title } = media;
-  // create DOM elements for filter section
   function getUserFilterDOM(likes, date, title) {
     const filterSection = document.createElement("div");
     filterSection.className = "section-filter";

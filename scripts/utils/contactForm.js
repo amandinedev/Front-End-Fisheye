@@ -4,24 +4,22 @@ function displayModal() {
   //  Set focus to the first form input element inside the modal.
   const firstInput = modal.querySelector("input");
   modal.style.display = "block";
-  //keyboard user, focus on first input and close button
   if (firstInput) {
     setTimeout(() => {
       firstInput.focus();
     }, 100);
   }
 
-  closeButton = document.querySelector("close-button");
-  if (closeButton) {
-    closeBtn.focus();
+const closeModalBtn = modal.querySelector(".close-button");
+if (closeModalBtn) {
+  switch (true) {
+    case window.addEventListener("keydown", closeModalOnEscape):
+      break;
+    case closeModalBtn.addEventListener("click", closeModal):
+      closeModalBtn.focus();
+      break;
   }
-  // Add event listener for Escape key and Enter on close button
-  window.addEventListener("keydown", closeModalOnEscape);
-  const closeModalBtn = modal.querySelector(".close-button");
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", closeModal);
-    closeModalBtn.focus();
-  }
+}
 
   // Set role="dialog" and aria-hidden="true" to main content for accessibility
   const photographerPageMainContent = document.querySelectorAll(
@@ -67,15 +65,19 @@ function closeModal() {
 
 /********* CLOSE MODAL ON ESCAPE ************/
 function closeModalOnEscape(event) {
-  if (event.key === "Escape" || event.keyCode === 27) {
-    closeModal();
-  } else if (event.key === "Enter") {
-    const focusedElement = document.activeElement;
-    // If the close button has focus and Enter is pressed, close the modal
-    if (focusedElement && focusedElement.classList.contains("close-button")) {
-      event.preventDefault();
-      closeModal();
-    }
+  switch (event.key) {
+    case "Escape":
+      if (event.keyCode === 27) { 
+        closeModal();
+      }
+      break;
+    case "Enter":
+      const focusedElement = document.activeElement;
+      if (focusedElement && focusedElement.classList.contains("close-button")) {
+        event.preventDefault();
+        closeModal();
+      }
+      break;
   }
 }
 
@@ -129,7 +131,6 @@ function validateLastName() {
 }
 // validate email
 function validateEmail() {
-  // get email entry
   const email = document.getElementById("email");
   // get email entry
   const emailRegex = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+$/;
