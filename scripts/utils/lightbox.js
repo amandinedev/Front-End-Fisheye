@@ -54,7 +54,7 @@ function displayLightbox(event) {
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
-  lightbox.removeAttribute=("aria-hidden")
+  lightbox.removeAttribute("aria-hidden")
 
   // Remove event listener for Escape key and Enter on close button
   window.removeEventListener("keydown", closeLightboxOnEscape);

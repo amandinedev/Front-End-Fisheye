@@ -16,16 +16,21 @@ function photographerTemplate(data) {
   //dynamically creates en article element containing an image and a heading for the photographer.
   function getUserCardDOM() {
     const article = document.createElement("article");
+    const titleId = `title-${id}`;
+    const locationId = `location-${id}`;
+    const taglineId = `tagline-${id}`;
+    const priceId = `price-${id}`;
+    // console.log(titleId, locationId, taglineId, priceId); 
     article.innerHTML = `
-     <a href="photographer.html?id=${id}" aria-label="aller vers la page de ${name}">
+     <a href="photographer.html?id=${id}" aria-labelledby="${titleId} ${locationId} ${taglineId} ${priceId}">
       <div class="article__img--rounded">
       </div>
-      <h2 class="article__title">${name}</h2>
+      <h2 id="${titleId}" class="article__title">${name}</h2>
     </a>
     <div class="article__info">
-      <p class="article__info--location">${city}, ${country}</p>
-      <p class="article__info--tagline">${tagline}</p>
-      <p class="article__info--price">${price}€/jour</p>
+      <p id= "${locationId}" class="article__info--location">${city}, ${country}</p>
+      <p id="${taglineId}" class="article__info--tagline">${tagline}</p>
+      <p id="${priceId}" class="article__info--price">${price}€/jour</p>
     </div>`;
     //create image
     const img = document.createElement("img");
