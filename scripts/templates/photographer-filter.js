@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function filterTemplate(media) {
   const { likes, date, title } = media;
   function getUserFilterDOM(likes, date, title) {

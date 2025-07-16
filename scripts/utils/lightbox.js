@@ -1,5 +1,5 @@
 /********* DISPLAY LIGHTBOX *************/
-
+// eslint-disable-next-line no-unused-vars
 function displayLightbox(event) {
   // Handle click logic for lightbox display
   // Check if it's a click event or an appropriate keydown (Enter/Space)
@@ -54,7 +54,7 @@ function displayLightbox(event) {
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   lightbox.style.display = "none";
-  lightbox.removeAttribute("aria-hidden")
+  lightbox.removeAttribute("aria-hidden");
 
   // Remove event listener for Escape key and Enter on close button
   window.removeEventListener("keydown", closeLightboxOnEscape);
@@ -90,11 +90,13 @@ let slideIndex = 1;
 showSlides(slideIndex);
 
 // Next/previous controls
+// eslint-disable-next-line no-unused-vars
 function plusSlides(n) {
   showSlides((slideIndex += n));
 }
 
 // Thumbnail image controls
+// eslint-disable-next-line no-unused-vars
 function currentSlide(n) {
   showSlides((slideIndex = n));
 }

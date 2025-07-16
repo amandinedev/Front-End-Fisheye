@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function photographerTemplate(data) {
   //extract photographer data properties
   const { name, id, city, country, tagline, price, portrait } = data;
@@ -5,16 +6,8 @@ function photographerTemplate(data) {
   //construct a full URL access to the portrait image
   const picture = `assets/photographers/${portrait}`;
 
-  function checkImageSize(img, name) {
-    const width = img.width;
-    const height = img.height;
-    if (width === height) {
-      img.className += "article__img--square";
-    }
-  }
-
   //dynamically creates en article element containing an image and a heading for the photographer.
-  function getUserCardDOM() {
+   function getUserCardDOM() {
     const article = document.createElement("article");
     const titleId = `title-${id}`;
     const locationId = `location-${id}`;

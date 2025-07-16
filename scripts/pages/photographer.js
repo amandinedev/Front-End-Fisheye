@@ -249,7 +249,7 @@ async function displayData(info, media) {
   // SHOW MEDIA
   const sectionMedia = document.createElement("section");
   sectionMedia.classList.add("section-medias");
-   media.forEach((mediaItem, index) => {
+  media.forEach((mediaItem, index) => {
     const mediaElement = MediaFactory.createMedia(info, mediaItem);
     const articleMediaDOM = mediaElement.getUserMediaDOM();
     // Assigning the correct data-slide attribute
@@ -460,7 +460,6 @@ async function init() {
   // Once loaded, `displayData()` creates and displays the header and media
   if (info && media) {
     displayData(info, media);
-  } else {
   }
 }
 

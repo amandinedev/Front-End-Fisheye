@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function priceTemplate(info, media) {
   const { price } = info;
   const { likes } = media;

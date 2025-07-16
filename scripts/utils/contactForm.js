@@ -1,4 +1,5 @@
 /********* DISPLAY MODAL *************/
+// eslint-disable-next-line no-unused-vars
 function displayModal() {
   const modal = document.getElementById("contact-modal");
   //  Set focus to the first form input element inside the modal.
@@ -65,6 +66,7 @@ function closeModal() {
 
 /********* CLOSE MODAL ON ESCAPE ************/
 function closeModalOnEscape(event) {
+  const focusedElement = document.activeElement;
   switch (event.key) {
     case "Escape":
       if (event.keyCode === 27) { 
@@ -72,7 +74,6 @@ function closeModalOnEscape(event) {
       }
       break;
     case "Enter":
-      const focusedElement = document.activeElement;
       if (focusedElement && focusedElement.classList.contains("close-button")) {
         event.preventDefault();
         closeModal();
@@ -145,6 +146,7 @@ function validateEmail() {
 }
 
 //function to validate the form
+// eslint-disable-next-line no-unused-vars
 function validate() {
   let firsNameValid = validateFirstName();
   let lastNameValid = validateLastName();
@@ -156,6 +158,7 @@ function validate() {
 }
 
 // Reset each input field
+// eslint-disable-next-line no-unused-vars
 function resetForm() {
   // Get all form inputs
   const inputs = document.querySelectorAll(".formData input");

@@ -1,12 +1,4 @@
-const handleImageLoad = function (event, name) {
-  const img = event.target;
-  const width = img.width;
-  const height = img.height;
-  if (width === height) {
-    img.classList.add(".article__img--square");
-  }
-};
-
+// eslint-disable-next-line no-unused-vars
 function headerTemplate(info) {
   const { name, id, city, country, tagline, price, portrait } = info;
   const picture = `assets/photographers/${portrait}`;
@@ -51,6 +43,6 @@ function headerTemplate(info) {
     price,
     picture,
     getUserHeaderArticleDOM,
-    getUserHeaderImageDOM,
+    getUserHeaderImageDOM
   };
 }

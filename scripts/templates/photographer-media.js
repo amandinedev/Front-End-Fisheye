@@ -1,4 +1,5 @@
 // Factory method to create media elements based on their type
+// eslint-disable-next-line no-unused-vars
 class MediaFactory {
   static createMedia(info, media) {
     if (media.image) {
@@ -37,7 +38,7 @@ class MediaTemplate {
   }
 
   getMediaPath() {
-    return `assets/media/${this._name.replace(/\s+/g, "").replace(/\-/g, "")}`;
+    return `assets/media/${this._name.replace(/\s+/g, "").replace(/-/g, "")}`;
   }
 
   // create DOM elements for media content
