@@ -90,7 +90,7 @@ class VideoMedia extends MediaTemplate {
     articleVideo.className = "article-media";
     articleVideo.innerHTML = `
     <video src="${videoSrc}" class="article-media__vid" aria-labelledby="video-description">
-    <div id="video-description" class=                                                                                                                                                            ">${this.title}</div>`;
+    <div id="video-description" class=sr-only">${this.title}</div>`;
 
     // Prevent inner video elements from being focusable
     const videos = articleVideo.querySelectorAll("video");

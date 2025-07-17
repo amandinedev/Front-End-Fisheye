@@ -14,7 +14,7 @@ function lightboxTemplate() {
     </ul>
     <img src="assets/icons/next-arrow.svg" class="next" aria-label="Next image" alt="aller à l'image suivante" tabindex="0"/>
     </div>
-    <span id=lightboxTitle" class="sr-only">Carousel de contenus visuels</span>
+    <span id="lightboxTitle" class="sr-only">Carousel de contenus visuels</span>
     <span id="lightboxAnnouncement" class="sr-only" role="alert"></span>
     `;
     return lightboxSection;

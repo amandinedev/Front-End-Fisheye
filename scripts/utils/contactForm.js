@@ -1,6 +1,10 @@
 /********* DISPLAY MODAL *************/
 // eslint-disable-next-line no-unused-vars
 function displayModal() {
+  const contactBtns = document.querySelectorAll(".contact-button");
+  // Remove focus from all .contact-button elements
+  contactBtns.forEach((button) => button.blur());
+
   const modal = document.getElementById("contact-modal");
   //  Set focus to the first form input element inside the modal.
   const firstInput = modal.querySelector("input");
