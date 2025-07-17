@@ -9,6 +9,7 @@ function priceTemplate(info, media) {
   function getUserPriceDOM() {
     const priceSection = document.createElement("section");
     priceSection.className = "section-price";
+    priceSection.setAttribute("tabindex", "0");
     priceSection.innerHTML = `
     <div class="section-price__content--likes">
       <h2 class="section-price__content--likes-total">${mediaTotalLikes}</h2>

@@ -18,6 +18,7 @@ function modalTemplate(info) {
           id="first"
           name="first"
           minlength="2"
+          aria-describedby="input-rule"
         />
       </div>
       <div class="formData">
@@ -28,6 +29,7 @@ function modalTemplate(info) {
           id="last"
           name="last"
           minlength="2"
+          aria-describedby="input-rule"
         />
       </div>
       <div class="formData">
@@ -39,6 +41,7 @@ function modalTemplate(info) {
           name="email"
         />
       </div>
+      <span id="input-rule" class="sr-only">Minimum 2 caractères</span>
       <div class="formData">
         <label for="message">Votre message</label>
         <textarea
