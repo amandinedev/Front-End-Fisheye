@@ -4,7 +4,7 @@
 #lightbox {
   display: none;
   position: absolute;
-  left: 99px;
+  left: 252px;
   top: 10px;
   background-color: rgba(255, 255, 255, 0.5);
   width: 65vw; //1253px;
@@ -68,16 +68,16 @@
 
 .carousel-item__img {
   width: 54.7vw;//1050px; 
-  height: 87.5vh; //900px; 
+  height: 56.5vh; //87.5vh; //900px; 
   object-fit: cover;
-  object-position: center calc(35%);
+  object-position: center calc(30%);//calc(35%);
 }
 
 .carousel-item__vid {
   width: 54.7vw; //1050px;
-  height: 87.5vh; //900px
+  height: 56.5vh; //87.5vh; //900px; 
   object-fit: cover;
-  object-position: center calc(35%);
+  object-position: center calc(30%);//calc(35%);
 }
 #carousel-item__img--description,
 #carousel-item__vid--description {

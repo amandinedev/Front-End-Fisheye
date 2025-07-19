@@ -37,7 +37,7 @@ async function displayData(info, media) {
   //SHOW FILTER
   const sectionFilter = filterTemplate(media);
   const filterDOM = sectionFilter.getUserFilterDOM();
-  const main = document.getElementById("main");
+  const main = document.getElementById("main-photographer");
   main.appendChild(filterDOM);
 
   //sort media based on selected criteria

@@ -15,9 +15,9 @@ nav {
 .logo {
   margin-left: 0;
 }
-// #main {
-
-// }
+#main-photographer {
+height: 1090px;
+}
 
 .header-photographer {
   background-color: $main-bg-color;
@@ -204,7 +204,7 @@ right: 15px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  column-gap: 9vw;
+  column-gap: 6.5vw;
   row-gap: 2vh;
   padding-top: 1rem;
   padding-bottom: 66px;
