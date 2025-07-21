@@ -180,8 +180,6 @@ async function displayData(info, media) {
       // Reset total likes to initial value before sorting
       totalLikes = mediaTotalLikes;
       initialTotalLikesElement.textContent = totalLikes; //update DOM element
-      //attach like event listeners after updating DOM
-      // setupLikeEventListeners();
       // Refocus on the filter button
       filterButton.focus();
     }

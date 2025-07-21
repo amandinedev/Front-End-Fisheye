@@ -599,7 +599,7 @@ form .message {
 
 .carousel-item__img {
   width: 54.7vw;
-  height: 56.5vh;
+  height: 86.5vh;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center 30%;
@@ -608,7 +608,7 @@ form .message {
 
 .carousel-item__vid {
   width: 54.7vw;
-  height: 56.5vh;
+  height: 86.5vh;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center 30%;
